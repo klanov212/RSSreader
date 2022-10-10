@@ -375,3 +375,5 @@ rss/obj/rss.csproj.nuget.dgspec.json
 rss/obj/rss.csproj.nuget.g.props
 rss/obj/Debug/net6.0-windows/rss.assets.cache
 rss/obj/Debug/net6.0-windows/rss.GeneratedMSBuildEditorConfig.editorconfig
+*.cache
+rss/obj/Debug/net6.0-windows/rss.designer.runtimeconfig.json
