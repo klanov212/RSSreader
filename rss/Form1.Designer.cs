@@ -51,6 +51,7 @@
             this.lblKategorier = new System.Windows.Forms.Label();
             this.lblPodcastBeskrivning = new System.Windows.Forms.Label();
             this.lblAvsinttsBeskrivning = new System.Windows.Forms.Label();
+            this.txtBoxBeskrivning = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // lstBoxAvsnitt
@@ -249,11 +250,19 @@
             // 
             this.lblAvsinttsBeskrivning.AutoSize = true;
             this.lblAvsinttsBeskrivning.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblAvsinttsBeskrivning.Location = new System.Drawing.Point(703, 429);
+            this.lblAvsinttsBeskrivning.Location = new System.Drawing.Point(703, 407);
             this.lblAvsinttsBeskrivning.Name = "lblAvsinttsBeskrivning";
             this.lblAvsinttsBeskrivning.Size = new System.Drawing.Size(186, 25);
             this.lblAvsinttsBeskrivning.TabIndex = 19;
             this.lblAvsinttsBeskrivning.Text = "Podcast #: Avsnitt: #";
+            // 
+            // txtBoxBeskrivning
+            // 
+            this.txtBoxBeskrivning.Location = new System.Drawing.Point(703, 433);
+            this.txtBoxBeskrivning.Name = "txtBoxBeskrivning";
+            this.txtBoxBeskrivning.Size = new System.Drawing.Size(385, 179);
+            this.txtBoxBeskrivning.TabIndex = 20;
+            this.txtBoxBeskrivning.Text = "";
             // 
             // Form1
             // 
@@ -261,6 +270,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(1100, 648);
+            this.Controls.Add(this.txtBoxBeskrivning);
             this.Controls.Add(this.lblAvsinttsBeskrivning);
             this.Controls.Add(this.lblPodcastBeskrivning);
             this.Controls.Add(this.lblKategorier);
@@ -312,5 +322,6 @@
         private ColumnHeader columnKategori;
         private Label lblPodcastBeskrivning;
         private Label lblAvsinttsBeskrivning;
+        private RichTextBox txtBoxBeskrivning;
     }
 }
