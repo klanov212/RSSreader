@@ -66,10 +66,15 @@
             // comboBoxFrekvens
             // 
             this.comboBoxFrekvens.FormattingEnabled = true;
+            this.comboBoxFrekvens.Items.AddRange(new object[] {
+            "10 sek",
+            "30 sek",
+            "1 min"});
             this.comboBoxFrekvens.Location = new System.Drawing.Point(271, 327);
             this.comboBoxFrekvens.Name = "comboBoxFrekvens";
             this.comboBoxFrekvens.Size = new System.Drawing.Size(207, 33);
             this.comboBoxFrekvens.TabIndex = 1;
+            this.comboBoxFrekvens.Text = "Uppdateringsfrekvens";
             // 
             // comboBoxKategori
             // 
@@ -78,6 +83,7 @@
             this.comboBoxKategori.Name = "comboBoxKategori";
             this.comboBoxKategori.Size = new System.Drawing.Size(161, 33);
             this.comboBoxKategori.TabIndex = 2;
+            this.comboBoxKategori.Text = "Välj kategori";
             // 
             // lstBoxKategori
             // 
@@ -126,6 +132,7 @@
             // 
             this.txtBoxURL.Location = new System.Drawing.Point(32, 329);
             this.txtBoxURL.Name = "txtBoxURL";
+            this.txtBoxURL.PlaceholderText = "Klistra in url här";
             this.txtBoxURL.Size = new System.Drawing.Size(232, 31);
             this.txtBoxURL.TabIndex = 5;
             // 
@@ -133,6 +140,7 @@
             // 
             this.txtBoxKategori.Location = new System.Drawing.Point(703, 309);
             this.txtBoxKategori.Name = "txtBoxKategori";
+            this.txtBoxKategori.PlaceholderText = "Skriv in den kategori du vill lägga till här";
             this.txtBoxKategori.Size = new System.Drawing.Size(385, 31);
             this.txtBoxKategori.TabIndex = 6;
             // 
