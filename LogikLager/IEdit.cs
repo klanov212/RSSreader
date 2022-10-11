@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace rss
 {
-    internal interface IEdit
+    public interface IEdit
     {
         void Delete();
         void ChangeName();
