@@ -8,19 +8,23 @@
     "net6.0-windows7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Klara Nordström\\.nuget\\packages\\": {}
+    "C:\\Users\\perni\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Klara Nordström\\OneDrive\\Örebro Universitet\\Programmeringsprojekt\\RSSreader\\rss\\rss.csproj",
+      "projectUniqueName": "C:\\Users\\perni\\Source\\Repos\\klanov212\\RSSreader\\rss\\rss.csproj",
       "projectName": "rss",
-      "projectPath": "C:\\Users\\Klara Nordström\\OneDrive\\Örebro Universitet\\Programmeringsprojekt\\RSSreader\\rss\\rss.csproj",
-      "packagesPath": "C:\\Users\\Klara Nordström\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Klara Nordström\\OneDrive\\Örebro Universitet\\Programmeringsprojekt\\RSSreader\\rss\\obj\\",
+      "projectPath": "C:\\Users\\perni\\Source\\Repos\\klanov212\\RSSreader\\rss\\rss.csproj",
+      "packagesPath": "C:\\Users\\perni\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\perni\\Source\\Repos\\klanov212\\RSSreader\\rss\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Klara Nordström\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\perni\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
