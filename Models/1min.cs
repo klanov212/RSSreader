@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace rss
+namespace Models
 {
-    public class Media
+    public class _1min : Frequency
     {
     }
 }

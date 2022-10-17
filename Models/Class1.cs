@@ -1,4 +1,4 @@
-﻿namespace Datalager
+﻿namespace Models
 {
     public class Class1
     {

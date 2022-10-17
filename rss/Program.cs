@@ -1,4 +1,4 @@
-namespace rss
+namespace PresentationLayer
 {
     internal static class Program
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace rss
+namespace Models
 {
     public class _30sec : Frequency
     {

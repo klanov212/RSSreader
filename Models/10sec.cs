@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace rss
+namespace Models
 {
-    public class Frequency
+    public class _10sec : Frequency
     {
     }
 }

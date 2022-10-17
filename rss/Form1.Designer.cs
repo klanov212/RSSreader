@@ -1,4 +1,4 @@
-﻿namespace rss
+﻿namespace PresentationLayer
 {
     partial class Form1
     {
@@ -40,10 +40,10 @@
             this.txtBoxURL = new System.Windows.Forms.TextBox();
             this.txtBoxKategori = new System.Windows.Forms.TextBox();
             this.btnNyFeed = new System.Windows.Forms.Button();
-            this.btnSparaFeed = new System.Windows.Forms.Button();
+            this.btnAndraFeed = new System.Windows.Forms.Button();
             this.btnTaBortFeed = new System.Windows.Forms.Button();
             this.btnTaBortKategori = new System.Windows.Forms.Button();
-            this.btnSparaKategori = new System.Windows.Forms.Button();
+            this.btnAndraKategori = new System.Windows.Forms.Button();
             this.btnNyKategori = new System.Windows.Forms.Button();
             this.lblURL = new System.Windows.Forms.Label();
             this.lblFrekvens = new System.Windows.Forms.Label();
@@ -93,6 +93,7 @@
             this.lstBoxKategori.Name = "lstBoxKategori";
             this.lstBoxKategori.Size = new System.Drawing.Size(385, 204);
             this.lstBoxKategori.TabIndex = 3;
+            this.lstBoxKategori.SelectedIndexChanged += new System.EventHandler(this.lstBoxKategori_SelectedIndexChanged);
             // 
             // lstViewFeed
             // 
@@ -154,15 +155,15 @@
             this.btnNyFeed.Text = "Ny...";
             this.btnNyFeed.UseVisualStyleBackColor = true;
             // 
-            // btnSparaFeed
+            // btnAndraFeed
             // 
-            this.btnSparaFeed.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnSparaFeed.Location = new System.Drawing.Point(408, 378);
-            this.btnSparaFeed.Name = "btnSparaFeed";
-            this.btnSparaFeed.Size = new System.Drawing.Size(112, 34);
-            this.btnSparaFeed.TabIndex = 8;
-            this.btnSparaFeed.Text = "Spara";
-            this.btnSparaFeed.UseVisualStyleBackColor = true;
+            this.btnAndraFeed.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnAndraFeed.Location = new System.Drawing.Point(408, 378);
+            this.btnAndraFeed.Name = "btnAndraFeed";
+            this.btnAndraFeed.Size = new System.Drawing.Size(112, 34);
+            this.btnAndraFeed.TabIndex = 8;
+            this.btnAndraFeed.Text = "Ändra";
+            this.btnAndraFeed.UseVisualStyleBackColor = true;
             // 
             // btnTaBortFeed
             // 
@@ -184,15 +185,15 @@
             this.btnTaBortKategori.Text = "Ta Bort...";
             this.btnTaBortKategori.UseVisualStyleBackColor = true;
             // 
-            // btnSparaKategori
+            // btnAndraKategori
             // 
-            this.btnSparaKategori.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnSparaKategori.Location = new System.Drawing.Point(840, 346);
-            this.btnSparaKategori.Name = "btnSparaKategori";
-            this.btnSparaKategori.Size = new System.Drawing.Size(112, 34);
-            this.btnSparaKategori.TabIndex = 11;
-            this.btnSparaKategori.Text = "Spara";
-            this.btnSparaKategori.UseVisualStyleBackColor = true;
+            this.btnAndraKategori.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnAndraKategori.Location = new System.Drawing.Point(840, 346);
+            this.btnAndraKategori.Name = "btnAndraKategori";
+            this.btnAndraKategori.Size = new System.Drawing.Size(112, 34);
+            this.btnAndraKategori.TabIndex = 11;
+            this.btnAndraKategori.Text = "Ändra";
+            this.btnAndraKategori.UseVisualStyleBackColor = true;
             // 
             // btnNyKategori
             // 
@@ -203,6 +204,7 @@
             this.btnNyKategori.TabIndex = 10;
             this.btnNyKategori.Text = "Ny...";
             this.btnNyKategori.UseVisualStyleBackColor = true;
+            this.btnNyKategori.Click += new System.EventHandler(this.btnNyKategori_Click);
             // 
             // lblURL
             // 
@@ -286,10 +288,10 @@
             this.Controls.Add(this.lblFrekvens);
             this.Controls.Add(this.lblURL);
             this.Controls.Add(this.btnTaBortKategori);
-            this.Controls.Add(this.btnSparaKategori);
+            this.Controls.Add(this.btnAndraKategori);
             this.Controls.Add(this.btnNyKategori);
             this.Controls.Add(this.btnTaBortFeed);
-            this.Controls.Add(this.btnSparaFeed);
+            this.Controls.Add(this.btnAndraFeed);
             this.Controls.Add(this.btnNyFeed);
             this.Controls.Add(this.txtBoxKategori);
             this.Controls.Add(this.txtBoxURL);
@@ -315,10 +317,10 @@
         private TextBox txtBoxURL;
         private TextBox txtBoxKategori;
         private Button btnNyFeed;
-        private Button btnSparaFeed;
+        private Button btnAndraFeed;
         private Button btnTaBortFeed;
         private Button btnTaBortKategori;
-        private Button btnSparaKategori;
+        private Button btnAndraKategori;
         private Button btnNyKategori;
         private Label lblURL;
         private Label lblFrekvens;
