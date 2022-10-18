@@ -30,6 +30,5 @@ namespace DataLayer
             public void Update(int index, Media theNewObject) { if (index >= 0) { MediaList[index] = theNewObject; } SaveChanges(); }
             public void Delete(int index) { MediaList.RemoveAt(index); SaveChanges(); }
             public void SaveChanges() { MediaSerializer.Serialize(MediaList); }
-        
     }
 }

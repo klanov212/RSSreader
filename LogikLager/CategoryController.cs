@@ -10,7 +10,6 @@ namespace LogicLayer
 {
     public class CategoryController
     {
-        
             IRepository<Category> categoryRepository;
             public CategoryController() { categoryRepository = new CategoryRepository(); }
             public void CreateCategory(string name)
@@ -20,6 +19,5 @@ namespace LogicLayer
             }
 
             public List<Category> RetrieveAllCategorys() { return categoryRepository.GetAll(); }
-
     }
 }

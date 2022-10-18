@@ -8,5 +8,8 @@ namespace Models
 {
     public class _1min : Frequency
     {
+        public _1min(string name, int interval) : base(name, interval)
+        {
+        }
     }
 }

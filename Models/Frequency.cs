@@ -8,5 +8,13 @@ namespace Models
 {
     public class Frequency
     {
+        public string Name { get; set; }
+        public int Interval { get; set; }
+
+        public Frequency(string name, int interval)
+        {
+            Name = name;
+            Interval = interval;
+        }   
     }
 }

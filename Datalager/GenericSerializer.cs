@@ -36,6 +36,7 @@ namespace DataLayer
         {
             List<T> list;
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<T>));
+            
             using (FileStream xmlIn =
                 new FileStream(fileName, FileMode.Open, FileAccess.Read))
             {
