@@ -20,8 +20,9 @@ namespace DataLayer
         }
         public GenericSerializer(string fName)
         {
-            FileName = fName;
+            FileName = fName + ".xml";
         }
+
         public void Serialize(List<T> list)
         {
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<T>));

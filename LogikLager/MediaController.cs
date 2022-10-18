@@ -12,9 +12,9 @@ namespace LogicLayer
     {
         IRepository<Media> mediaRepository; 
         public MediaController() { mediaRepository = new MediaRepository(); }
-        public void CreateMedia(string name, Category category, string url, string description, int numberOfEpisodes) 
+        public void CreateMedia(string name, Category category, Frequency frequency, string url, string description, int numberOfEpisodes) 
         { 
-            Media mediaObj = new Media(name, category, url, description, numberOfEpisodes); 
+            Media mediaObj = new Media(name, category, frequency, url, description, numberOfEpisodes); 
             mediaRepository.Insert(mediaObj); 
         }
 
