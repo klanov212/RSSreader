@@ -16,14 +16,15 @@ namespace Models
         public string Description { get; set; }
         public int NumberOfEpisodes { get; set; }
 
-        public Media(string name, Category category, Frequency frequency, string url, string description, int numberOfEpisodes)
+        public Media(Category category, Frequency frequency, string url)
         {
-            Name = name;
             Category = category;
             Frequency = frequency;
             Url = url;
-            Description = description;
-            NumberOfEpisodes = numberOfEpisodes;
+        }
+        public Media()
+        {
+
         }
 
     }

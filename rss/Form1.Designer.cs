@@ -75,6 +75,7 @@
             this.comboBoxFrekvens.Size = new System.Drawing.Size(207, 33);
             this.comboBoxFrekvens.TabIndex = 1;
             this.comboBoxFrekvens.Text = "Uppdateringsfrekvens";
+            this.comboBoxFrekvens.SelectedIndexChanged += new System.EventHandler(this.comboBoxFrekvens_SelectedIndexChanged);
             // 
             // comboBoxKategori
             // 
@@ -153,6 +154,7 @@
             this.btnNyFeed.TabIndex = 7;
             this.btnNyFeed.Text = "Ny...";
             this.btnNyFeed.UseVisualStyleBackColor = true;
+            this.btnNyFeed.Click += new System.EventHandler(this.btnNyFeed_Click);
             // 
             // btnAndraFeed
             // 
