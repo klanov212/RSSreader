@@ -8,8 +8,10 @@ namespace Models
 {
     public class _1min : Frequency
     {
-        public _1min(string name, int interval) : base(name, interval)
+        public _1min(string name) : base(name)
         {
+            Name = "1 minut";
+            UpdateTime = 60000;
         }
     }
 }

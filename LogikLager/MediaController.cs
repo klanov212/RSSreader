@@ -12,13 +12,25 @@ namespace LogicLayer
     {
         IRepository<Media> mediaRepository; 
         public MediaController() { mediaRepository = new MediaRepository(); }
-        public void CreateMedia(string name, Category category, Frequency frequency, string url, string description, int numberOfEpisodes) 
+        public void CreateMedia(Category category, Frequency frequency, string url) 
         { 
-            Media mediaObj = new Media(name, category, frequency, url, description, numberOfEpisodes); 
+            Media mediaObj = new Media(category, frequency, url); 
             mediaRepository.Insert(mediaObj); 
         }
 
-        public List<Media> RetrieveAllParts() { return mediaRepository.GetAll(); }
-        
+        public List<Media> RetrieveAllParts() 
+        { 
+            return mediaRepository.GetAll(); 
+        }
+        public void DeleteMedia(int index)
+        {
+            mediaRepository.Delete(index);
+        }
+        public void UpdateMedia(int index, Category category, Frequency frequency, string url)
+        {
+            Media mediaObj = new Media(category, frequency, url);
+            mediaRepository.Update(index, mediaObj);
+        }
+
     }
 }

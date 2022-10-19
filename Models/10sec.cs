@@ -8,8 +8,10 @@ namespace Models
 {
     public class _10sec : Frequency
     {
-        public _10sec(string name, int interval) : base(name, interval)
+        public _10sec(string name) : base(name)
         {
+            Name = "10 sekunder";
+            UpdateTime = 10000;
         }
     }
 }

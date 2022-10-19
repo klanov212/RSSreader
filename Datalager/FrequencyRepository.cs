@@ -30,9 +30,24 @@ namespace DataLayer
             }
             return frequency;
         }
-        public void Insert(Frequency theObject) { FrequencyList.Add(theObject); SaveChanges(); }
-        public void Update(int index, Frequency theNewObject) { if (index >= 0) { FrequencyList[index] = theNewObject; } SaveChanges(); }
-        public void Delete(int index) { FrequencyList.RemoveAt(index); SaveChanges(); }
-        public void SaveChanges() { FrequencySerializer.Serialize(FrequencyList); }
+        public void Insert(Frequency theObject) 
+        { 
+            FrequencyList.Add(theObject); SaveChanges(); 
+        }
+        public void Update(int index, Frequency theNewObject) 
+        { if (index >= 0) 
+            { 
+                FrequencyList[index] = theNewObject; 
+            } 
+            SaveChanges(); 
+        }
+        public void Delete(int index) 
+        {
+            FrequencyList.RemoveAt(index); SaveChanges(); 
+        }
+        public void SaveChanges() 
+        { 
+            FrequencySerializer.Serialize(FrequencyList); 
+        }
     }
 }

@@ -11,13 +11,19 @@ namespace LogicLayer
     public class FrequencyController
     {
         IRepository<Frequency> frequencyRepository;
-        public FrequencyController() { frequencyRepository = new FrequencyRepository(); }
-        public void CreateFrequency(string name, int interval)
+        public FrequencyController() 
+        { 
+            frequencyRepository = new FrequencyRepository(); 
+        }
+        public void CreateFrequency(string name)
         {
-            Frequency frequencyObj = new Frequency(name, interval);
+            Frequency frequencyObj = new Frequency(name);
             frequencyRepository.Insert(frequencyObj);
         }
 
-        public List<Frequency> RetrieveAllFrequencys() { return frequencyRepository.GetAll(); }
+        public List<Frequency> RetrieveAllFrequencys() 
+        { 
+            return frequencyRepository.GetAll(); 
+        }
     }
 }
