@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
-using DataLayer;
+using System.IO;
 
 namespace DataLayer
 {
@@ -20,11 +20,12 @@ namespace DataLayer
         }
         public GenericSerializer(string fName)
         {
-            FileName = fName + ".xml";
+            FileName = fName+".xml";
         }
 
         public void Serialize(List<T> list)
         {
+            
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<T>));
             using (FileStream xmlOut =
                 new FileStream(fileName, FileMode.Create, FileAccess.Write))
@@ -37,7 +38,6 @@ namespace DataLayer
         {
             List<T> list;
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<T>));
-            
             using (FileStream xmlIn =
                 new FileStream(fileName, FileMode.Open, FileAccess.Read))
             {

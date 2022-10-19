@@ -93,7 +93,6 @@
             this.lstBoxKategori.Name = "lstBoxKategori";
             this.lstBoxKategori.Size = new System.Drawing.Size(385, 204);
             this.lstBoxKategori.TabIndex = 3;
-            this.lstBoxKategori.SelectedIndexChanged += new System.EventHandler(this.lstBoxKategori_SelectedIndexChanged);
             // 
             // lstViewFeed
             // 
@@ -184,6 +183,7 @@
             this.btnTaBortKategori.TabIndex = 12;
             this.btnTaBortKategori.Text = "Ta Bort...";
             this.btnTaBortKategori.UseVisualStyleBackColor = true;
+            this.btnTaBortKategori.Click += new System.EventHandler(this.btnTaBortKategori_Click);
             // 
             // btnAndraKategori
             // 
@@ -194,6 +194,7 @@
             this.btnAndraKategori.TabIndex = 11;
             this.btnAndraKategori.Text = "Ändra";
             this.btnAndraKategori.UseVisualStyleBackColor = true;
+            this.btnAndraKategori.Click += new System.EventHandler(this.btnAndraKategori_Click);
             // 
             // btnNyKategori
             // 
@@ -302,6 +303,7 @@
             this.Controls.Add(this.lstBoxAvsnitt);
             this.Name = "Form1";
             this.Text = "RSS-reader";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
