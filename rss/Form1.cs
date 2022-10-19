@@ -1,6 +1,7 @@
 using LogicLayer;
 using Models;
 using System.Security.Permissions;
+using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace PresentationLayer
@@ -15,32 +16,40 @@ namespace PresentationLayer
             mediacontroller = new MediaController();
             categoryController = new CategoryController();
         }
-
-        private void btnNyKategori_Click(object sender, EventArgs e)
-        {
-            Category categoryObj = null;
-            categoryController.CreateCategory(txtBoxKategori.Text);
-            PopulateListBox();
-        }
-
-        private void lstBoxKategori_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            categoryController.RetrieveAllCategorys();
-        }
+        //Fyller alla fällt i formen när man kör programmet
         private void Form1_Load(object sender, EventArgs e)
-        {
-            PopulateListBox();
+        {   
+            PopulateCategoryListBox();
         }
-
-        private void PopulateListBox()
+        //Metod för att fylla kategori-listboxen med kategorier från xml-filen
+        private void PopulateCategoryListBox()
         {
             lstBoxKategori.Items.Clear();
-            List<Category> list = categoryController.RetrieveAllCategorys();
-            for (int i = 0; i < list.Count; i++)
+            for (int i = 0; i < categoryController.RetrieveAllCategorys().Count; i++)
             {
-                Category category = list[i];
+                Category category = categoryController.RetrieveAllCategorys()[i];
                 lstBoxKategori.Items.Add(category.Name);
             }
+        }
+        //Lägger till ny kategori
+        private void btnNyKategori_Click(object sender, EventArgs e)
+        {
+            categoryController.CreateCategory(txtBoxKategori.Text);
+            PopulateCategoryListBox();
+            txtBoxKategori.Clear();
+        }
+        //Tar bort markerad kategori
+        private void btnTaBortKategori_Click(object sender, EventArgs e)
+        {
+            categoryController.DeleteCategory(lstBoxKategori.SelectedIndex);
+            PopulateCategoryListBox();
+        }
+        //Ändrar namn på markerad kategori
+        private void btnAndraKategori_Click(object sender, EventArgs e)
+        {
+            categoryController.UpdateCategory(lstBoxKategori.SelectedIndex, txtBoxKategori.Text);
+            PopulateCategoryListBox();
+            txtBoxKategori.Clear();
         }
 
     }

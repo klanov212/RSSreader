@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace DataLayer
 {
@@ -17,8 +18,8 @@ namespace DataLayer
             CategorySerializer = new GenericSerializer<Category>(nameof(CategoryList));
         }
         public List<Category> GetAll() 
-        { 
-            return CategorySerializer.Deserialize(); 
+        {
+            return CategorySerializer.Deserialize();
         }
         public Category GetByID(string id)
         {
