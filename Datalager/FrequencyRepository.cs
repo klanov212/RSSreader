@@ -14,8 +14,8 @@ namespace DataLayer
         List<Frequency> FrequencyList;
         public FrequencyRepository()
         {
-            FrequencyList = new List<Frequency>(); 
             FrequencySerializer = new GenericSerializer<Frequency>(nameof(FrequencyList));
+            FrequencyList = GetAll();
         }
         public List<Frequency> GetAll() { return FrequencySerializer.Deserialize(); }
         public Frequency GetByID(string id)

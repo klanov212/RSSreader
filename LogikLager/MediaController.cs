@@ -18,7 +18,7 @@ namespace LogicLayer
             mediaRepository.Insert(mediaObj); 
         }
 
-        public List<Media> RetrieveAllParts() 
+        public List<Media> RetrieveAllMedia() 
         { 
             return mediaRepository.GetAll(); 
         }

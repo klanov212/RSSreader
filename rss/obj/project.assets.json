@@ -107,19 +107,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Klara Nordström\\.nuget\\packages\\": {}
+    "C:\\Users\\arthu\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Klara Nordström\\OneDrive\\Örebro Universitet\\Programmeringsprojekt\\RSSreader\\rss\\PresentationLayer.csproj",
+      "projectUniqueName": "C:\\Github repos\\RSSreader\\rss\\PresentationLayer.csproj",
       "projectName": "PresentationLayer",
-      "projectPath": "C:\\Users\\Klara Nordström\\OneDrive\\Örebro Universitet\\Programmeringsprojekt\\RSSreader\\rss\\PresentationLayer.csproj",
-      "packagesPath": "C:\\Users\\Klara Nordström\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Klara Nordström\\OneDrive\\Örebro Universitet\\Programmeringsprojekt\\RSSreader\\rss\\obj\\",
+      "projectPath": "C:\\Github repos\\RSSreader\\rss\\PresentationLayer.csproj",
+      "packagesPath": "C:\\Users\\arthu\\.nuget\\packages\\",
+      "outputPath": "C:\\Github repos\\RSSreader\\rss\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Klara Nordström\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\arthu\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -133,11 +133,11 @@
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
           "projectReferences": {
-            "C:\\Users\\Klara Nordström\\OneDrive\\Örebro Universitet\\Programmeringsprojekt\\RSSreader\\LogikLager\\LogicLayer.csproj": {
-              "projectPath": "C:\\Users\\Klara Nordström\\OneDrive\\Örebro Universitet\\Programmeringsprojekt\\RSSreader\\LogikLager\\LogicLayer.csproj"
+            "C:\\Github repos\\RSSreader\\LogikLager\\LogicLayer.csproj": {
+              "projectPath": "C:\\Github repos\\RSSreader\\LogikLager\\LogicLayer.csproj"
             },
-            "C:\\Users\\Klara Nordström\\OneDrive\\Örebro Universitet\\Programmeringsprojekt\\RSSreader\\Models\\Models.csproj": {
-              "projectPath": "C:\\Users\\Klara Nordström\\OneDrive\\Örebro Universitet\\Programmeringsprojekt\\RSSreader\\Models\\Models.csproj"
+            "C:\\Github repos\\RSSreader\\Models\\Models.csproj": {
+              "projectPath": "C:\\Github repos\\RSSreader\\Models\\Models.csproj"
             }
           }
         }
@@ -170,7 +170,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
       }
     }
   }

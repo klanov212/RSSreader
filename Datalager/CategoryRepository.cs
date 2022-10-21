@@ -14,8 +14,8 @@ namespace DataLayer
         List<Category> CategoryList;
         public CategoryRepository()
         {
-            CategoryList = new List<Category>(); 
             CategorySerializer = new GenericSerializer<Category>(nameof(CategoryList));
+            CategoryList = GetAll();
         }
         public List<Category> GetAll() 
         {

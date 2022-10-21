@@ -23,6 +23,7 @@ namespace PresentationLayer
         {   
             PopulateCategoryListBox();
             PopulateComboBoxCategory();
+            PopulateViewFeed();
         }
         //Metod för att fylla kategori-listboxen med kategorier från xml-filen
         private void PopulateCategoryListBox()
@@ -41,6 +42,17 @@ namespace PresentationLayer
             {
                 Category category = categoryController.RetrieveAllCategorys()[i];
                 comboBoxKategori.Items.Add(category.Name);
+            }
+        }
+
+        private void PopulateViewFeed()
+        {
+            for (int i = 0; i < mediaController.RetrieveAllMedia().Count; i++)
+            {
+                Media media = mediaController.RetrieveAllMedia()[i];
+                //lstViewFeed.Items.Add(media.NumberOfEpisodes, media.Name, media.Frequency, media.Category);
+                String[] row1 = { media.Name, media.Frequency.ToString(), media.Category.ToString() };
+                lstViewFeed.Items.Add(media.NumberOfEpisodes.ToString()).SubItems.AddRange(row1);
             }
         }
         
@@ -70,9 +82,13 @@ namespace PresentationLayer
 
         private void btnNyFeed_Click(object sender, EventArgs e)
         {
-            //mediaController.CreateMedia(comboBoxKategori.SelectedItem, comboBoxFrekvens.SelectedItem, txtBoxURL.Text);
-            ////PopulateCategoryListBox();
-            ////txtBoxURL.Clear();
+            int i = comboBoxKategori.SelectedIndex;
+            int j = comboBoxFrekvens.SelectedIndex;
+            Category category = categoryController.RetrieveAllCategorys()[i];
+            Frequency frequency = frequencyController.RetrieveAllFrequencys()[j];
+            mediaController.CreateMedia(category, frequency, txtBoxURL.Text);
+            PopulateViewFeed();
+            txtBoxURL.Clear();
         }
 
         private void comboBoxFrekvens_SelectedIndexChanged(object sender, EventArgs e)

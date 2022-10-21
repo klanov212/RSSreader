@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "WsZr28r0SgCs9+j9NuIfVoALesmLIkLF3Y3xhr1ZbyIdh3IfGkW9ldcWb5M62JYlCOC9mhpdA0j6nHXKPVlUjg==",
+  "dgSpecHash": "pa0RGTRUCktwN3YvHDy1/vgDW3+SZq+qQ74oBYoZfJO9rmSL1AC0ffr2Lp+U6IynqTEwdFq9ONJ2BszFcP38aQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Klara Nordström\\OneDrive\\Örebro Universitet\\Programmeringsprojekt\\RSSreader\\rss\\PresentationLayer.csproj",
+  "projectFilePath": "C:\\Github repos\\RSSreader\\rss\\PresentationLayer.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Klara Nordström\\.nuget\\packages\\system.servicemodel.syndication\\6.0.0\\system.servicemodel.syndication.6.0.0.nupkg.sha512"
+    "C:\\Users\\arthu\\.nuget\\packages\\system.servicemodel.syndication\\6.0.0\\system.servicemodel.syndication.6.0.0.nupkg.sha512"
   ],
   "logs": []
 }
