@@ -15,7 +15,36 @@ namespace PresentationLayer
             mediacontroller = new MediaController();
             categoryController = new CategoryController();
         }
-
+        //Fyller alla fällt i formen när man kör programmet
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            if (categoryController.RetrieveAllCategorys != null)
+            {
+                PopulateCategoryListBox();
+                PopulateComboBoxCategory();
+            }
+        }
+        //Metod för att fylla kategori-listboxen med kategorier från xml-filen
+        private void PopulateCategoryListBox()
+        {
+            lstBoxKategori.Items.Clear();
+            for (int i = 0; i < categoryController.RetrieveAllCategorys().Count; i++)
+            {
+                Category category = categoryController.RetrieveAllCategorys()[i];
+                lstBoxKategori.Items.Add(category.Name);
+            }
+        }
+        private void PopulateComboBoxCategory()
+        {
+            comboBoxKategori.Items.Clear();
+            for (int i = 0; i < categoryController.RetrieveAllCategorys().Count; i++)
+            {
+                Category category = categoryController.RetrieveAllCategorys()[i];
+                comboBoxKategori.Items.Add(category.Name);
+            }
+        }
+        
+        //Lägger till ny kategori
         private void btnNyKategori_Click(object sender, EventArgs e)
         {
             Category categoryObj = null;

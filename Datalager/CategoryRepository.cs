@@ -48,7 +48,11 @@ namespace DataLayer
         }
         public void SaveChanges() 
         { 
-            CategorySerializer.Serialize(CategoryList); 
+                if(CategoryList != null) {
+                CategorySerializer.Serialize(CategoryList); 
+            }
+                
+             
         }
 
     }

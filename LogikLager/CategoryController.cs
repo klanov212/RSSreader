@@ -18,9 +18,20 @@ namespace LogicLayer
                 categoryRepository.Insert(categoryObj);
             }
 
-            public List<Category> RetrieveAllCategorys() 
-            { 
-                return categoryRepository.GetAll(); 
-            }
+        public List<Category> RetrieveAllCategorys() 
+        { 
+            return categoryRepository.GetAll(); 
+        }
+        public void DeleteCategory(int index)
+        {
+            categoryRepository.Delete(index);
+        }
+        public void UpdateCategory(int index, string name)
+        {
+            Category categoryObj = new Category(name);
+            categoryRepository.Update(index, categoryObj);
+        }
+
+        
     }
 }
