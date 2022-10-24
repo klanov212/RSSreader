@@ -11,10 +11,12 @@ namespace DataLayer
     {
         GenericSerializer<Category> CategorySerializer;
         List<Category> CategoryList;
+        Category obj;
         public CategoryRepository()
         {
             CategoryList = new List<Category>(); 
             CategorySerializer = new GenericSerializer<Category>(nameof(CategoryList));
+            obj = new Category();
         }
         public List<Category> GetAll() 
         { 
@@ -49,7 +51,9 @@ namespace DataLayer
         public void SaveChanges() 
         { 
                 if(CategoryList != null) {
-                CategorySerializer.Serialize(CategoryList); 
+                    CategorySerializer.Serialize(CategoryList); 
+                
+                
             }
                 
              

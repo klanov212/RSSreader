@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using DataLayer;
+using Models;
 
 namespace DataLayer
 {
@@ -24,27 +25,35 @@ namespace DataLayer
         }
 
         public void Serialize(List<T> list)
-        {
+        {    
+            
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<T>));
             using (FileStream xmlOut =
-                new FileStream(fileName, FileMode.Create, FileAccess.Write))
+                new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.Write, FileShare.Read))
             {
                 xmlSerializer.Serialize(xmlOut, list);
+
             }
         }
 
         public List<T> Deserialize()
         {
             List<T> list;
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<T>));
-            
-            using (FileStream xmlIn =
-                new FileStream(fileName, FileMode.Open, FileAccess.Read))
+            if (File.Exists(fileName))
             {
-                list = (List<T>)xmlSerializer.Deserialize(xmlIn);
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<T>));
+                using (FileStream xmlIn =
+                    new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Write))
+                {
+                    list = (List<T>)xmlSerializer.Deserialize(xmlIn);
+                }
+                return list;
             }
-            return list;
+            return new List<T>();
+
         }
+
+
     }
 }
 
