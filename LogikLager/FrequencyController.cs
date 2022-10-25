@@ -15,9 +15,19 @@ namespace LogicLayer
         { 
             frequencyRepository = new FrequencyRepository(); 
         }
-        public void CreateFrequency(string name)
+        public void CreateFrequency10Sec()
         {
-            Frequency frequencyObj = new Frequency(name);
+            _10sec frequencyObj = new _10sec();
+            frequencyRepository.Insert(frequencyObj);
+        }
+        public void CreateFrequency30Sec()
+        {
+            _30sec frequencyObj = new _30sec();
+            frequencyRepository.Insert(frequencyObj);
+        }
+        public void CreateFrequency1Min()
+        {
+            _1min frequencyObj = new _1min();
             frequencyRepository.Insert(frequencyObj);
         }
 

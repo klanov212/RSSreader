@@ -14,6 +14,7 @@ namespace DataLayer
         List<Category> CategoryList;
         public CategoryRepository()
         {
+            CategoryList = new List<Category>();
             CategorySerializer = new GenericSerializer<Category>(nameof(CategoryList));
             CategoryList = GetAll();
         }
@@ -21,13 +22,13 @@ namespace DataLayer
         {
             return CategorySerializer.Deserialize();
         }
-        public Category GetByID(string id)
+        public Category GetByID(int index)
         {
             Category category = null;
 
             foreach (var item in CategorySerializer.Deserialize())
             {
-                if (item.Name.Equals(id))
+                if (item.Name.Equals(index))
                 { category = item; }
             }
             return category;

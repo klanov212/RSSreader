@@ -14,18 +14,18 @@ namespace Models
     [XmlInclude(typeof(_1min))]
     public class Frequency
     {
-        public string Name { get; set; }
-        public double UpdateTime { get; set; }
+        //public string Name { get; set; }
+        public virtual double UpdateTime { get; set; }
         public DateTime UpdateNext { get; set; }
-        public Frequency(string name)
+        public Frequency(/*string name*/)
         {
-            Name = name;
+            //Name = name;
             Update();
         }
-        public Frequency()
-        {
+        //public Frequency()
+        //{
 
-        }
+        //}
 
         public bool NeedsUpdate
         {

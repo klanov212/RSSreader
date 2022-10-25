@@ -62,6 +62,7 @@
             this.lstBoxAvsnitt.Name = "lstBoxAvsnitt";
             this.lstBoxAvsnitt.Size = new System.Drawing.Size(624, 179);
             this.lstBoxAvsnitt.TabIndex = 0;
+            this.lstBoxAvsnitt.SelectedIndexChanged += new System.EventHandler(this.lstBoxAvsnitt_SelectedIndexChanged);
             // 
             // comboBoxFrekvens
             // 
@@ -75,7 +76,6 @@
             this.comboBoxFrekvens.Size = new System.Drawing.Size(207, 33);
             this.comboBoxFrekvens.TabIndex = 1;
             this.comboBoxFrekvens.Text = "Uppdateringsfrekvens";
-            this.comboBoxFrekvens.SelectedIndexChanged += new System.EventHandler(this.comboBoxFrekvens_SelectedIndexChanged);
             // 
             // comboBoxKategori
             // 
@@ -102,12 +102,15 @@
             this.columnNamn,
             this.columnFrekvens,
             this.columnKategori});
+            this.lstViewFeed.FullRowSelect = true;
+            this.lstViewFeed.GridLines = true;
             this.lstViewFeed.Location = new System.Drawing.Point(32, 75);
             this.lstViewFeed.Name = "lstViewFeed";
             this.lstViewFeed.Size = new System.Drawing.Size(624, 204);
             this.lstViewFeed.TabIndex = 4;
             this.lstViewFeed.UseCompatibleStateImageBehavior = false;
             this.lstViewFeed.View = System.Windows.Forms.View.Details;
+            this.lstViewFeed.SelectedIndexChanged += new System.EventHandler(this.lstViewFeed_SelectedIndexChanged);
             // 
             // columnAvsnitt
             // 
@@ -165,6 +168,7 @@
             this.btnAndraFeed.TabIndex = 8;
             this.btnAndraFeed.Text = "Ändra";
             this.btnAndraFeed.UseVisualStyleBackColor = true;
+            this.btnAndraFeed.Click += new System.EventHandler(this.btnAndraFeed_Click);
             // 
             // btnTaBortFeed
             // 
@@ -175,6 +179,7 @@
             this.btnTaBortFeed.TabIndex = 9;
             this.btnTaBortFeed.Text = "Ta bort...";
             this.btnTaBortFeed.UseVisualStyleBackColor = true;
+            this.btnTaBortFeed.Click += new System.EventHandler(this.btnTaBortFeed_Click);
             // 
             // btnTaBortKategori
             // 

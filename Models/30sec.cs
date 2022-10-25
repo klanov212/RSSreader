@@ -8,10 +8,20 @@ namespace Models
 {
     public class _30sec : Frequency
     {
-        public _30sec(string name) : base(name)
+        public override double UpdateTime 
         {
-            Name = "30 sekunder";
-            UpdateTime = 30000; 
+            get
+            {
+                return base.UpdateTime; 
+            }
+            set 
+            { 
+                base.UpdateTime = 30000; 
+            }
+        }
+        public _30sec()
+        {
+            
         }
     }
 }

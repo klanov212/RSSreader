@@ -31,6 +31,14 @@ namespace LogicLayer
             Media mediaObj = new Media(category, frequency, url);
             mediaRepository.Update(index, mediaObj);
         }
+        public Media GetMediaById(int index)
+        {
+            return mediaRepository.GetByID(index);
+        }
+        //public List<Episodes> GetAllEpisodes()
+        //{
+        //    return Media.ListOfEpisodes();
+        //}
 
     }
 }

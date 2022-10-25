@@ -8,10 +8,20 @@ namespace Models
 {
     public class _1min : Frequency
     {
-        public _1min(string name) : base(name)
+        public override double UpdateTime
         {
-            Name = "1 minut";
-            UpdateTime = 60000;
+            get
+            {
+                return base.UpdateTime;
+            }
+            set
+            {
+                base.UpdateTime = 60000;
+            }
+        }
+        public _1min()
+        {
+            
         }
     }
 }
