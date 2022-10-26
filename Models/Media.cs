@@ -36,15 +36,13 @@ namespace Models
             XmlReader reader = XmlReader.Create(url);
             SyndicationFeed feed = SyndicationFeed.Load(reader);
             reader.Close();
-            foreach (var (item, episode) in from SyndicationItem item in feed.Items
-                                            let episode = new Episodes()
-                                            select (item, episode))
+            foreach (SyndicationItem item in feed.Items)
             {
+                Episodes episode = new Episodes();
                 episode.Title = item.Title.Text;
                 episode.Description = item.Summary.Text;
                 AllEpisodes.Add(episode);
             }
-
             Name = feed.Title.Text;
             NumberOfEpisodes = AllEpisodes.Count();
         }

@@ -12,10 +12,11 @@ namespace LogicLayer
     {
         IRepository<Media> mediaRepository; 
         public MediaController() { mediaRepository = new MediaRepository(); }
-        public void CreateMedia(Category category, Frequency frequency, string url) 
+        public Media CreateMedia(Category category, Frequency frequency, string url) 
         { 
             Media mediaObj = new Media(category, frequency, url); 
             mediaRepository.Insert(mediaObj); 
+            return mediaObj;
         }
 
         public List<Media> RetrieveAllMedia() 
