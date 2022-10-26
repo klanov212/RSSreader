@@ -58,7 +58,7 @@
             // 
             this.lstBoxAvsnitt.FormattingEnabled = true;
             this.lstBoxAvsnitt.ItemHeight = 25;
-            this.lstBoxAvsnitt.Location = new System.Drawing.Point(32, 433);
+            this.lstBoxAvsnitt.Location = new System.Drawing.Point(32, 493);
             this.lstBoxAvsnitt.Name = "lstBoxAvsnitt";
             this.lstBoxAvsnitt.Size = new System.Drawing.Size(624, 179);
             this.lstBoxAvsnitt.TabIndex = 0;
@@ -94,6 +94,7 @@
             this.lstBoxKategori.Name = "lstBoxKategori";
             this.lstBoxKategori.Size = new System.Drawing.Size(385, 204);
             this.lstBoxKategori.TabIndex = 3;
+            this.lstBoxKategori.SelectedIndexChanged += new System.EventHandler(this.lstBoxKategori_SelectedIndexChanged);
             // 
             // lstViewFeed
             // 
@@ -258,7 +259,7 @@
             // 
             this.lblPodcastBeskrivning.AutoSize = true;
             this.lblPodcastBeskrivning.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblPodcastBeskrivning.Location = new System.Drawing.Point(27, 405);
+            this.lblPodcastBeskrivning.Location = new System.Drawing.Point(27, 465);
             this.lblPodcastBeskrivning.Name = "lblPodcastBeskrivning";
             this.lblPodcastBeskrivning.Size = new System.Drawing.Size(186, 25);
             this.lblPodcastBeskrivning.TabIndex = 17;
@@ -268,7 +269,7 @@
             // 
             this.lblAvsinttsBeskrivning.AutoSize = true;
             this.lblAvsinttsBeskrivning.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblAvsinttsBeskrivning.Location = new System.Drawing.Point(703, 407);
+            this.lblAvsinttsBeskrivning.Location = new System.Drawing.Point(703, 467);
             this.lblAvsinttsBeskrivning.Name = "lblAvsinttsBeskrivning";
             this.lblAvsinttsBeskrivning.Size = new System.Drawing.Size(186, 25);
             this.lblAvsinttsBeskrivning.TabIndex = 19;
@@ -276,7 +277,7 @@
             // 
             // txtBoxBeskrivning
             // 
-            this.txtBoxBeskrivning.Location = new System.Drawing.Point(703, 433);
+            this.txtBoxBeskrivning.Location = new System.Drawing.Point(703, 493);
             this.txtBoxBeskrivning.Name = "txtBoxBeskrivning";
             this.txtBoxBeskrivning.Size = new System.Drawing.Size(385, 179);
             this.txtBoxBeskrivning.TabIndex = 20;
@@ -287,7 +288,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.ClientSize = new System.Drawing.Size(1100, 648);
+            this.ClientSize = new System.Drawing.Size(1100, 690);
             this.Controls.Add(this.txtBoxBeskrivning);
             this.Controls.Add(this.lblAvsinttsBeskrivning);
             this.Controls.Add(this.lblPodcastBeskrivning);

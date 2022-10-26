@@ -167,15 +167,32 @@ namespace PresentationLayer
             mediaController.DeleteMedia(lstViewFeed.SelectedIndices[0]);
             PopulateViewFeed();
         }
-
+        //Kallar på metoden som populerar avsnittslistan när man klickar på ett spesifikt feed i ViewFeed-listan
         private void lstViewFeed_SelectedIndexChanged(object sender, EventArgs e)
         {
             PopulatelstBoxAvsnitt();
         }
-
+        //Kallar på metoden som populerar beskrivningsrutan när man klickar på ett specifikt avsnitt i avsnitslistan
         private void lstBoxAvsnitt_SelectedIndexChanged(object sender, EventArgs e)
         {
             PopulatetxtBoxBeskrivning();
+        }
+
+        //Sorterar feedet efter vald kategori
+        private async void lstBoxKategori_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lstViewFeed.Items.Clear();
+            List<Media> medialist = mediaController.RetrieveAllMedia();
+            foreach (var media in medialist)
+            {
+                if (media.Category.Name.Equals(lstBoxKategori.SelectedItem))
+                {
+                    Task GetUrlData = media.GetUrlAsync(media.Url);
+                    await GetUrlData;
+                    string[] row1 = { media.Name, media.Frequency.GetType().ToString().Substring(8), media.Category.Name };
+                    lstViewFeed.Items.Add(media.NumberOfEpisodes.ToString()).SubItems.AddRange(row1);
+                }               
+            }           
         }
     }
 }
