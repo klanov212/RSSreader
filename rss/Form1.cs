@@ -75,13 +75,11 @@ namespace PresentationLayer
         {
             txtBoxBeskrivning.Clear();
             Media media = mediaController.GetMediaById(lstViewFeed.SelectedIndices[0]);
+            int i = lstBoxAvsnitt.SelectedIndex;
             Task GetUrlData = media.GetUrlAsync(media.Url);
             await GetUrlData;
-            {
-                foreach(var item in media.ListOfEpisodes())
-                {          
-                    txtBoxBeskrivning.AppendText(item.Description);
-                }            
+            {    
+                    txtBoxBeskrivning.AppendText(media.ListOfEpisodes()[i].Description);
             }
         }
         //Lägger till ny kategori
