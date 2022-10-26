@@ -127,21 +127,21 @@ namespace PresentationLayer
             if (comboBoxFrekvens.SelectedItem.Equals("10 sek"))
             {
                 Frequency theFrequency = new _10sec();
-                media = mediaController.CreateMedia(theCategory, theFrequency, txtBoxURL.Text);
+                media = mediaController.CreateMedia(txtBoxNamn.Text ,theCategory, theFrequency, txtBoxURL.Text);
                 Task GetUrlData = media.GetUrlAsync(txtBoxURL.Text);
                 await GetUrlData;
             }
             else if (comboBoxFrekvens.SelectedItem.Equals("30 sek"))
             {
                 Frequency theFrequency = new _30sec();
-                media = mediaController.CreateMedia(theCategory, theFrequency, txtBoxURL.Text);
+                media = mediaController.CreateMedia(txtBoxNamn.Text, theCategory, theFrequency, txtBoxURL.Text);
                 Task GetUrlData = media.GetUrlAsync(txtBoxURL.Text);
                 await GetUrlData;
             }
             else if (comboBoxFrekvens.SelectedItem.Equals("1 min"))
             {
                 Frequency theFrequency = new _1min();
-                media = mediaController.CreateMedia(theCategory, theFrequency, txtBoxURL.Text);
+                media = mediaController.CreateMedia(txtBoxNamn.Text, theCategory, theFrequency, txtBoxURL.Text);
                 Task GetUrlData = media.GetUrlAsync(txtBoxURL.Text);
                 await GetUrlData;
             }
@@ -207,6 +207,11 @@ namespace PresentationLayer
                     lstViewFeed.Items.Add(media.NumberOfEpisodes.ToString()).SubItems.AddRange(row1);
                 }               
             }           
+        }
+
+        private void btnAllaKategorier_Click(object sender, EventArgs e)
+        {
+            PopulateViewFeed();
         }
     }
 }

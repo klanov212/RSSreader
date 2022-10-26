@@ -25,12 +25,19 @@ namespace Models
             Frequency = frequency;
             Url = url;
         }
+        public Media(string name, Category category, Frequency frequency, string url)
+        {
+            Category = category;
+            Frequency = frequency;
+            Url = url;
+            Name = name;
+        }
+
         public Media()
         {
 
         }
 
-        //Här används LINQ
         public void GetUrl(string url)
         {
             XmlReader reader = XmlReader.Create(url);
@@ -43,7 +50,11 @@ namespace Models
                 episode.Description = item.Summary.Text;
                 AllEpisodes.Add(episode);
             }
-            Name = feed.Title.Text;
+            //Om man ej fyllt i fältet för namn på feedet tas automatiskt namnet från feedet.
+            if (Name == null) 
+            { 
+                Name = feed.Title.Text; 
+            }           
             NumberOfEpisodes = AllEpisodes.Count();
         }
 

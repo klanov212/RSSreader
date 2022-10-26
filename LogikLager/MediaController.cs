@@ -18,6 +18,12 @@ namespace LogicLayer
             mediaRepository.Insert(mediaObj); 
             return mediaObj;
         }
+        public Media CreateMedia(string name, Category category, Frequency frequency, string url)
+        {
+            Media mediaObj = new Media(name, category, frequency, url);
+            mediaRepository.Insert(mediaObj);
+            return mediaObj;
+        }
 
         public List<Media> RetrieveAllMedia() 
         { 
