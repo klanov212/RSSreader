@@ -18,7 +18,7 @@ namespace LogicLayer
             mediaRepository.Insert(mediaObj); 
         }
 
-        public List<Media> RetrieveAllParts() 
+        public List<Media> RetrieveAllMedia() 
         { 
             return mediaRepository.GetAll(); 
         }
@@ -31,6 +31,9 @@ namespace LogicLayer
             Media mediaObj = new Media(category, frequency, url);
             mediaRepository.Update(index, mediaObj);
         }
-
+        public Media GetMediaById(int index)
+        {
+            return mediaRepository.GetByID(index);
+        }
     }
 }

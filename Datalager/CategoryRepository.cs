@@ -14,22 +14,23 @@ namespace DataLayer
         List<Category> CategoryList;
         public CategoryRepository()
         {
-            CategoryList = new List<Category>(); 
+            CategoryList = new List<Category>();
             CategorySerializer = new GenericSerializer<Category>(nameof(CategoryList));
+            CategoryList = GetAll();
         }
         public List<Category> GetAll() 
         {
             return CategorySerializer.Deserialize();
         }
-        public Category GetByID(string id)
+        //Här används LINQ
+        public Category GetByID(int index)
         {
             Category category = null;
-
-            foreach (var item in CategorySerializer.Deserialize())
+            foreach (var item in CategorySerializer.Deserialize().Where(item => item.Name.Equals(index)))
             {
-                if (item.Name.Equals(id))
-                { category = item; }
+                category = item;
             }
+
             return category;
         }
         public void Insert(Category theObject) 
