@@ -38,14 +38,20 @@ namespace DataLayer
 
         public List<T> Deserialize()
         {
-                List<T> list;
+            List<T> list;
+            if (File.Exists(fileName))
+            {
                 XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<T>));
                 using (FileStream xmlIn =
                     new FileStream(fileName, FileMode.Open, FileAccess.Read))
                 {
-                   list = (List<T>)xmlSerializer.Deserialize(xmlIn);
+                    list = (List<T>)xmlSerializer.Deserialize(xmlIn);
                 }
                 return list;
+            }
+            else { return new List<T>(); }
+                
+                
         }
     }
 }
