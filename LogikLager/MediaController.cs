@@ -35,10 +35,5 @@ namespace LogicLayer
         {
             return mediaRepository.GetByID(index);
         }
-        //public List<Episodes> GetAllEpisodes()
-        //{
-        //    return Media.ListOfEpisodes();
-        //}
-
     }
 }

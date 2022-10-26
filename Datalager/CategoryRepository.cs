@@ -22,15 +22,15 @@ namespace DataLayer
         {
             return CategorySerializer.Deserialize();
         }
+        //Här används LINQ
         public Category GetByID(int index)
         {
             Category category = null;
-
-            foreach (var item in CategorySerializer.Deserialize())
+            foreach (var item in CategorySerializer.Deserialize().Where(item => item.Name.Equals(index)))
             {
-                if (item.Name.Equals(index))
-                { category = item; }
+                category = item;
             }
+
             return category;
         }
         public void Insert(Category theObject) 

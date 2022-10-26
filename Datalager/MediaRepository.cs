@@ -25,18 +25,7 @@ namespace DataLayer
         public Media GetByID(int index)
         {
             Media media = null;
-
             media = MediaList[index];
-
-            //foreach (var item in MediaSerializer.Deserialize())
-            //{
-            //    //if (item.Name.Equals(index))
-            //    //if (MediaList[index].Equals(index))
-            //    //{
-            //    //    MediaList[index] = media; 
-            //    //}
-
-            //}
             return media;
         }
         public void Insert(Media theObject) 

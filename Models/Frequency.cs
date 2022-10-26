@@ -14,19 +14,12 @@ namespace Models
     [XmlInclude(typeof(_1min))]
     public class Frequency
     {
-        //public string Name { get; set; }
         public virtual double UpdateTime { get; set; }
         public DateTime UpdateNext { get; set; }
-        public Frequency(/*string name*/)
-        {
-            //Name = name;
+        public Frequency()
+        {            
             Update();
         }
-        //public Frequency()
-        //{
-
-        //}
-
         public bool NeedsUpdate
         {
             get
@@ -41,8 +34,7 @@ namespace Models
             // nästa uppdatering sker om "UpdateInterval" minuter
             // Vi hittar den tidpunkten genom att lägga till det antalet millisekunder till den 
             // nuvarande tiden.
-            UpdateNext = DateTime.Now.AddMilliseconds(UpdateTime);
-            
+            UpdateNext = DateTime.Now.AddMilliseconds(UpdateTime);           
         }
     }
 }
