@@ -51,7 +51,7 @@ namespace Models
                 AllEpisodes.Add(episode);
             }
             //Om man ej fyllt i fältet för namn på feedet tas automatiskt namnet från feedet.
-            if (Name == null) 
+            if(Name == null) 
             { 
                 Name = feed.Title.Text; 
             }           

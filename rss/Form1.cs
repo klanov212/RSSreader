@@ -107,6 +107,8 @@ namespace PresentationLayer
             }
             categoryController.DeleteCategory(lstBoxKategori.SelectedIndex);
             PopulateViewFeed();
+            lstBoxAvsnitt.Items.Clear();
+            txtBoxBeskrivning.Clear();
             PopulateCategoryListBox();
             PopulateComboBoxCategory();
         }
@@ -180,6 +182,8 @@ namespace PresentationLayer
         {
             mediaController.DeleteMedia(lstViewFeed.SelectedIndices[0]);
             PopulateViewFeed();
+            lstBoxAvsnitt.Items.Clear();
+            txtBoxBeskrivning.Clear();
         }
         //Kallar på metoden som populerar avsnittslistan när man klickar på ett spesifikt feed i ViewFeed-listan
         private void lstViewFeed_SelectedIndexChanged(object sender, EventArgs e)
