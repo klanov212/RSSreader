@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "t3T8CuAJVEODwDMpMWGQ0zDohSLCDOiRoYKDf6HCUr9tOgyWKpHghErwWzN/17/lyUSeg7Le0BNvxPHK/8nqhg==",
+  "dgSpecHash": "ZReaJButt+3qS4idgJi5awmzxAZpKlHjt1De8zz39T66bs9Ip6gnHl7qtmP2V1I72ZZ5HFyckVE/98LzF+wGgg==",
   "success": true,
-  "projectFilePath": "C:\\Github repos\\RSSreader\\rss\\PresentationLayer.csproj",
+  "projectFilePath": "C:\\Users\\perni\\source\\repos\\klanov212\\RSSreader\\rss\\PresentationLayer.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\arthu\\.nuget\\packages\\octokit\\4.0.1\\octokit.4.0.1.nupkg.sha512",
-    "C:\\Users\\arthu\\.nuget\\packages\\system.servicemodel.syndication\\6.0.0\\system.servicemodel.syndication.6.0.0.nupkg.sha512"
+    "C:\\Users\\perni\\.nuget\\packages\\octokit\\4.0.1\\octokit.4.0.1.nupkg.sha512",
+    "C:\\Users\\perni\\.nuget\\packages\\system.servicemodel.syndication\\6.0.0\\system.servicemodel.syndication.6.0.0.nupkg.sha512"
   ],
   "logs": []
 }

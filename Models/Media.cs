@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.ServiceModel;
 using System.ServiceModel.Syndication;
+using Octokit;
 
 namespace Models
 {
@@ -31,27 +32,33 @@ namespace Models
         }
 
         //Här används LINQ
-        public void GetUrl(string url)
+        public async Task<List<SyndicationItem>> GetUrlAsync(string url)
         {
-            XmlReader reader = XmlReader.Create(url);
-            SyndicationFeed feed = SyndicationFeed.Load(reader);
-            reader.Close();
-            foreach (var (item, episode) in from SyndicationItem item in feed.Items
-                                            let episode = new Episodes()
-                                            select (item, episode))
+            return await Task.Run(() =>
             {
-                episode.Title = item.Title.Text;
-                episode.Description = item.Summary.Text;
-                AllEpisodes.Add(episode);
-            }
-
-            Name = feed.Title.Text;
-            NumberOfEpisodes = AllEpisodes.Count();
+                XmlReader reader = XmlReader.Create(url);
+                SyndicationFeed feed = SyndicationFeed.Load(reader);
+                reader.Close();
+                Name = feed.Title.Text;
+                return feed.Items.ToList();
+                
+                
+            });
         }
 
-        public async Task GetUrlAsync(string url)
-        {
-            await Task.Run(() => GetUrl(url));
+        public List<Episodes> SetEpisodes(List<SyndicationItem> feedList)
+        {   
+            List<Episodes> episodes = new List<Episodes>();
+            foreach (var item in feedList)
+            {
+                Episodes episode = new Episodes();
+                episode.Title = item.Title.Text;
+                episode.Description = item.Summary.Text;
+                
+                episodes.Add(episode);
+            }
+           
+            return episodes;
         }
 
         public List<Episodes> ListOfEpisodes()

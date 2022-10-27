@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ServiceModel.Syndication;
 
 namespace LogicLayer
 {
@@ -12,9 +13,13 @@ namespace LogicLayer
     {
         IRepository<Media> mediaRepository; 
         public MediaController() { mediaRepository = new MediaRepository(); }
-        public void CreateMedia(Category category, Frequency frequency, string url) 
+        public async void CreateMedia(Category category, Frequency frequency, string url) 
         { 
-            Media mediaObj = new Media(category, frequency, url); 
+            Media mediaObj = new Media(category, frequency, url);
+            Task<List<SyndicationItem>> GetUrlData = mediaObj.GetUrlAsync(mediaObj.Url);
+            List<SyndicationItem> feedList = await GetUrlData;
+            mediaObj.AllEpisodes = mediaObj.SetEpisodes(feedList);
+            mediaObj.NumberOfEpisodes = mediaObj.AllEpisodes.Count();
             mediaRepository.Insert(mediaObj); 
         }
 

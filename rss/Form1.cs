@@ -4,6 +4,7 @@ using System.Security.Permissions;
 using System.Windows.Forms;
 using System.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.ServiceModel.Syndication;
 
 namespace PresentationLayer
 {
@@ -46,42 +47,40 @@ namespace PresentationLayer
             }
         }
 
-        private async void PopulateViewFeed()
+        private void PopulateViewFeed()
         {
             lstViewFeed.Items.Clear();
             for (int i = 0; i < mediaController.RetrieveAllMedia().Count; i++)
             {
                 Media media = mediaController.RetrieveAllMedia()[i];
-                Task GetUrlData = media.GetUrlAsync(media.Url);
-                await GetUrlData;
                 string[] row1 = { media.Name, media.Frequency.GetType().ToString().Substring(8), media.Category.Name };
                 lstViewFeed.Items.Add(media.NumberOfEpisodes.ToString()).SubItems.AddRange(row1);
             }
         }
-        private async void PopulatelstBoxAvsnitt()
+        private void PopulatelstBoxAvsnitt()
         {
             lstBoxAvsnitt.Items.Clear();
             Media media = mediaController.GetMediaById(lstViewFeed.SelectedIndices[0]);
-            Task GetUrlData = media.GetUrlAsync(media.Url);
-            await GetUrlData;
+            List<Episodes> episodes = media.ListOfEpisodes();
             {
-                foreach (var item in media.ListOfEpisodes())
+                foreach (Episodes item in episodes)
                 {
                     lstBoxAvsnitt.Items.Add(item.Title);
                 }
             }
         }
-        private async void PopulatetxtBoxBeskrivning()
-        {
-            txtBoxBeskrivning.Clear();
-            Media media = mediaController.GetMediaById(lstViewFeed.SelectedIndices[0]);
-            int i = lstBoxAvsnitt.SelectedIndex;
-            Task GetUrlData = media.GetUrlAsync(media.Url);
-            await GetUrlData;
-            {    
-                    txtBoxBeskrivning.AppendText(media.ListOfEpisodes()[i].Description);
-            }
-        }
+        //private async void PopulatetxtBoxBeskrivning()
+        //{
+        //    txtBoxBeskrivning.Clear();
+        //    Media media = mediaController.GetMediaById(lstViewFeed.SelectedIndices[0]);
+        //    int i = lstBoxAvsnitt.SelectedIndex;
+        //    Task GetUrlData = media.GetUrlAsync(media.Url);
+        //    await GetUrlData;
+
+        //    {    
+        //            txtBoxBeskrivning.AppendText(media.ListOfEpisodes()[i].Description);
+        //    }
+        //}
         //Lägger till ny kategori
         private void btnNyKategori_Click(object sender, EventArgs e)
         {
@@ -106,7 +105,7 @@ namespace PresentationLayer
             txtBoxKategori.Clear();
         }
         //Lägger till nya media-objekt i listView
-        private async void btnNyFeed_Click(object sender, EventArgs e)
+        private void btnNyFeed_Click(object sender, EventArgs e)
         {
             int index = comboBoxKategori.SelectedIndex;
             Category theCategory = categoryController.RetrieveAllCategorys()[index];
@@ -126,9 +125,7 @@ namespace PresentationLayer
                 Frequency theFrequency = new _1min();
                 mediaController.CreateMedia(theCategory, theFrequency, txtBoxURL.Text);
             }
-            Media media = new Media();
-            Task GetUrlData = media.GetUrlAsync(txtBoxURL.Text);
-            await GetUrlData;
+            
             PopulateViewFeed();
             txtBoxURL.Clear();
         }
@@ -168,12 +165,12 @@ namespace PresentationLayer
         //Kallar på metoden som populerar avsnittslistan när man klickar på ett spesifikt feed i ViewFeed-listan
         private void lstViewFeed_SelectedIndexChanged(object sender, EventArgs e)
         {
-            PopulatelstBoxAvsnitt();
+            //PopulatelstBoxAvsnitt();
         }
         //Kallar på metoden som populerar beskrivningsrutan när man klickar på ett specifikt avsnitt i avsnitslistan
         private void lstBoxAvsnitt_SelectedIndexChanged(object sender, EventArgs e)
         {
-            PopulatetxtBoxBeskrivning();
+            //PopulatetxtBoxBeskrivning();
         }
 
         //Sorterar feedet efter vald kategori
