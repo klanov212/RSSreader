@@ -85,13 +85,25 @@ namespace PresentationLayer
                 }            
             }
         }
-        //Lägger till ny kategori
+        //Lägger till ny kategori men ej dublett-värden
         private void btnNyKategori_Click(object sender, EventArgs e)
         {
-            categoryController.CreateCategory(txtBoxKategori.Text);
-            PopulateCategoryListBox();
-            PopulateComboBoxCategory();
             txtBoxKategori.Clear();
+            List<Category> categorylist = categoryController.RetrieveAllCategorys();
+            for(int i = 0; i < categorylist.Count; i ++)
+            {
+                Category? category = categorylist[i];
+                if (txtBoxKategori.Text.Equals(lstBoxKategori.Text))
+                {
+                    txtBoxKategori.Text = lstBoxKategori.Text;
+                }
+            }
+            if (!txtBoxKategori.Text.Equals(lstBoxKategori.Text))
+            {
+                categoryController.CreateCategory(txtBoxKategori.Text);
+            }
+            PopulateCategoryListBox();
+            PopulateComboBoxCategory();        
         }
         //Tar bort markerad kategori och tillhörande feeds
         private void btnTaBortKategori_Click(object sender, EventArgs e)
@@ -112,10 +124,22 @@ namespace PresentationLayer
             PopulateCategoryListBox();
             PopulateComboBoxCategory();
         }
-        //Ändrar namn på markerad kategori
+        //Ändrar namn på markerad kategori och de feeds som har samma kategorinamn
         private void btnAndraKategori_Click(object sender, EventArgs e)
         {
-            categoryController.UpdateCategory(lstBoxKategori.SelectedIndex, txtBoxKategori.Text);
+            Category category;
+            category = categoryController.UpdateCategory(lstBoxKategori.SelectedIndex, txtBoxKategori.Text);
+            List<Media> medialist = mediaController.RetrieveAllMedia();
+            for (int i = 0; i < medialist.Count; i++)
+            {
+                Media? media = medialist[i];
+                if (media.Category.Name.Equals(lstBoxKategori.SelectedItem))
+                {
+                    
+                    media = mediaController.UpdateMedia(i, media.Name, category, media.Frequency, media.Url);
+                }
+            }          
+            PopulateViewFeed();
             PopulateCategoryListBox();
             PopulateComboBoxCategory();
             txtBoxKategori.Clear();
@@ -159,17 +183,17 @@ namespace PresentationLayer
             if (comboBoxFrekvens.SelectedItem.Equals("10 sek"))
             {               
                 _10sec theFrequency = new _10sec();
-                mediaController.UpdateMedia(lstViewFeed.SelectedIndices[0], theCategory, theFrequency, txtBoxURL.Text);
+                mediaController.UpdateMedia(lstViewFeed.SelectedIndices[0], txtBoxNamn.Text, theCategory, theFrequency, txtBoxURL.Text);
             }
             else if (comboBoxFrekvens.SelectedItem.Equals("30 sek"))
             {
                 _30sec theFrequency = new _30sec();
-                mediaController.UpdateMedia(lstViewFeed.SelectedIndices[0], theCategory, theFrequency, txtBoxURL.Text);
+                mediaController.UpdateMedia(lstViewFeed.SelectedIndices[0], txtBoxNamn.Text, theCategory, theFrequency, txtBoxURL.Text);
             }
             else if (comboBoxFrekvens.SelectedItem.Equals("1 min"))
             {
                 _1min theFrequency = new _1min();
-                mediaController.UpdateMedia(lstViewFeed.SelectedIndices[0], theCategory, theFrequency, txtBoxURL.Text);
+                mediaController.UpdateMedia(lstViewFeed.SelectedIndices[0], txtBoxNamn.Text, theCategory, theFrequency, txtBoxURL.Text);
             }
             Media media = new Media();
             Task GetUrlData = media.GetUrlAsync(txtBoxURL.Text);
