@@ -62,7 +62,7 @@ namespace PresentationLayer
         private async void PopulatelstBoxAvsnitt()
         {
             lstBoxAvsnitt.Items.Clear();
-            Media media = mediaController.GetMediaById(lstViewFeed.SelectedIndices[0]);
+            Media media = mediaController.GetMediaById(lstViewFeed.FocusedItem.Index);
             Task GetUrlData = media.GetUrlAsync(media.Url);
             await GetUrlData;
             {
