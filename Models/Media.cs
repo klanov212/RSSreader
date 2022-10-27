@@ -19,12 +19,6 @@ namespace Models
         public List<Episodes> AllEpisodes { get; set; }
         public int NumberOfEpisodes { get; set; }
 
-        public Media(Category category, Frequency frequency, string url)
-        {
-            Category = category;
-            Frequency = frequency;
-            Url = url;
-        }
         public Media(string name, Category category, Frequency frequency, string url)
         {
             Category = category;
@@ -49,12 +43,7 @@ namespace Models
                 episode.Title = item.Title.Text;
                 episode.Description = item.Summary.Text;
                 AllEpisodes.Add(episode);
-            }
-            //Om man ej fyllt i fältet för namn på feedet tas automatiskt namnet från feedet.
-            if(Name == null) 
-            { 
-                Name = feed.Title.Text; 
-            }           
+            }         
             NumberOfEpisodes = AllEpisodes.Count();
         }
 

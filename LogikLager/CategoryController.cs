@@ -30,10 +30,11 @@ namespace LogicLayer
         {
             categoryRepository.Delete(index);
         }
-        public void UpdateCategory(int index, string name)
+        public Category UpdateCategory(int index, string name)
         {
             Category categoryObj = new Category(name);
             categoryRepository.Update(index, categoryObj);
+            return categoryObj;
         }
     }
 }
