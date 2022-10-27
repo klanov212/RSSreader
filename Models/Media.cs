@@ -25,27 +25,36 @@ namespace Models
             Frequency = frequency;
             Url = url;
         }
+        public Media(string name, Category category, Frequency frequency, string url)
+        {
+            Category = category;
+            Frequency = frequency;
+            Url = url;
+            Name = name;
+        }
+
         public Media()
         {
 
         }
 
-        //Här används LINQ
         public void GetUrl(string url)
         {
             XmlReader reader = XmlReader.Create(url);
             SyndicationFeed feed = SyndicationFeed.Load(reader);
             reader.Close();
-            foreach (var (item, episode) in from SyndicationItem item in feed.Items
-                                            let episode = new Episodes()
-                                            select (item, episode))
+            foreach (SyndicationItem item in feed.Items)
             {
+                Episodes episode = new Episodes();
                 episode.Title = item.Title.Text;
                 episode.Description = item.Summary.Text;
                 AllEpisodes.Add(episode);
             }
-
-            Name = feed.Title.Text;
+            //Om man ej fyllt i fältet för namn på feedet tas automatiskt namnet från feedet.
+            if(Name == null) 
+            { 
+                Name = feed.Title.Text; 
+            }           
             NumberOfEpisodes = AllEpisodes.Count();
         }
 
