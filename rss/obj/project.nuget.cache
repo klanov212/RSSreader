@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "t3T8CuAJVEODwDMpMWGQ0zDohSLCDOiRoYKDf6HCUr9tOgyWKpHghErwWzN/17/lyUSeg7Le0BNvxPHK/8nqhg==",
+  "dgSpecHash": "9LNxpUlUBj44gc7SW9zUI3GNpkfOjbLQw5WTA+Tm985aGMcslVAGViMYl79mM5sZBcRycoXbnPE7dFxl/ukCkA==",
   "success": true,
-  "projectFilePath": "C:\\Github repos\\RSSreader\\rss\\PresentationLayer.csproj",
+  "projectFilePath": "C:\\Users\\Klara Nordström\\OneDrive\\Örebro Universitet\\Programmeringsprojekt\\RSSreader\\rss\\PresentationLayer.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\arthu\\.nuget\\packages\\octokit\\4.0.1\\octokit.4.0.1.nupkg.sha512",
-    "C:\\Users\\arthu\\.nuget\\packages\\system.servicemodel.syndication\\6.0.0\\system.servicemodel.syndication.6.0.0.nupkg.sha512"
+    "C:\\Users\\Klara Nordström\\.nuget\\packages\\octokit\\4.0.1\\octokit.4.0.1.nupkg.sha512",
+    "C:\\Users\\Klara Nordström\\.nuget\\packages\\system.servicemodel.syndication\\6.0.0\\system.servicemodel.syndication.6.0.0.nupkg.sha512"
   ],
   "logs": []
 }
