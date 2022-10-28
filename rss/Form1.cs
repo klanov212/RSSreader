@@ -110,32 +110,39 @@ namespace PresentationLayer
         {
            DialogResult dr = MessageBox.Show("Du håller på att ta bort kategorin " + lstBoxKategori.SelectedItem +
                 " och dess tillhörande feed", "", MessageBoxButtons.OKCancel);
-
-            switch (dr)
+            try
             {
-                case DialogResult.OK:
-                    List<Media> medialist = mediaController.RetrieveAllMedia();
-                    for (int i = 0; i < medialist.Count; i++)
-                    {
-                        Media? media = medialist[i];
-                        if (media.Category.Name.Equals(lstBoxKategori.SelectedItem))
+                switch (dr)
+                {
+                    case DialogResult.OK:
+                        List<Media> medialist = mediaController.RetrieveAllMedia();
+                        for (int i = 0; i < medialist.Count; i++)
                         {
-                            mediaController.DeleteMedia(i);
+                            Media? media = medialist[i];
+                            if (media.Category.Name.Equals(lstBoxKategori.SelectedItem))
+                            {
+                                mediaController.DeleteMedia(i);
+                            }
                         }
-                    }
-                    categoryController.DeleteCategory(lstBoxKategori.SelectedIndex);
-                    PopulateViewFeed();
-                    lstBoxAvsnitt.Items.Clear();
-                    txtBoxBeskrivning.Clear();
-                    PopulateCategoryListBox();
-                    PopulateComboBoxCategory();
-                    break;
+                        categoryController.DeleteCategory(lstBoxKategori.SelectedIndex);
+                        PopulateViewFeed();
+                        lstBoxAvsnitt.Items.Clear();
+                        txtBoxBeskrivning.Clear();
+                        PopulateCategoryListBox();
+                        PopulateComboBoxCategory();
+                        break;
 
-                case DialogResult.Cancel:
-                    break;
+                    case DialogResult.Cancel:
+                        break;
 
-                default:
-                    break;
+                    default:
+                        break;
+                }
+            }
+
+            catch(Exception)
+            {
+
             }
             
         }
