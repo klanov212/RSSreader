@@ -13,9 +13,9 @@ namespace LogicLayer
     {
         IRepository<Media> mediaRepository; 
         public MediaController() { mediaRepository = new MediaRepository(); }
-        public async void CreateMedia(string namn, Category category, Frequency frequency, string url)
+        public async void CreateMedia(string name, Category category, Frequency frequency, string url)
         {
-            Media mediaObj = new Media(namn, category, frequency, url);
+            Media mediaObj = new Media(name, category, frequency, url);
             Task<List<SyndicationItem>> GetUrlData = mediaObj.GetUrlAsync(mediaObj.Url);
             List<SyndicationItem> feedList = await GetUrlData;
             mediaObj.AllEpisodes = mediaObj.SetEpisodes(feedList);
