@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ServiceModel.Syndication;
 
 namespace LogicLayer
 {
@@ -12,11 +13,14 @@ namespace LogicLayer
     {
         IRepository<Media> mediaRepository; 
         public MediaController() { mediaRepository = new MediaRepository(); }
-        public Media CreateMedia(string name, Category category, Frequency frequency, string url)
+        public async void CreateMedia(string name, Category category, Frequency frequency, string url)
         {
             Media mediaObj = new Media(name, category, frequency, url);
+            Task<List<SyndicationItem>> GetUrlData = mediaObj.GetUrlAsync(mediaObj.Url);
+            List<SyndicationItem> feedList = await GetUrlData;
+            mediaObj.AllEpisodes = mediaObj.SetEpisodes(feedList);
+            mediaObj.NumberOfEpisodes = mediaObj.AllEpisodes.Count();
             mediaRepository.Insert(mediaObj);
-            return mediaObj;
         }
         public List<Media> RetrieveAllMedia() 
         { 
@@ -26,11 +30,15 @@ namespace LogicLayer
         {
             mediaRepository.Delete(index);
         }
-        public Media UpdateMedia(int index, string name, Category category, Frequency frequency, string url)
+        public async void UpdateMedia(int index, string name, Category category, Frequency frequency, string url)
         {
             Media mediaObj = new Media(name, category, frequency, url);
+            Task<List<SyndicationItem>> GetUrlData = mediaObj.GetUrlAsync(mediaObj.Url);
+            List<SyndicationItem> feedList = await GetUrlData;
+            mediaObj.AllEpisodes = mediaObj.SetEpisodes(feedList);
+            mediaObj.NumberOfEpisodes = mediaObj.AllEpisodes.Count();
             mediaRepository.Update(index, mediaObj);
-            return mediaObj;
+            
         }
         public Media GetMediaById(int index)
         {

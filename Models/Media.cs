@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.ServiceModel;
 using System.ServiceModel.Syndication;
+using Octokit;
 
 namespace Models
 {
@@ -32,24 +33,33 @@ namespace Models
 
         }
 
-        public void GetUrl(string url)
+        //Här används LINQ
+        public async Task<List<SyndicationItem>> GetUrlAsync(string url)
         {
-            XmlReader reader = XmlReader.Create(url);
-            SyndicationFeed feed = SyndicationFeed.Load(reader);
-            reader.Close();
-            foreach (SyndicationItem item in feed.Items)
+            return await Task.Run(() =>
+            {
+                XmlReader reader = XmlReader.Create(url);
+                SyndicationFeed feed = SyndicationFeed.Load(reader);
+                reader.Close();
+                return feed.Items.ToList();
+                
+                
+            });
+        }
+
+        public List<Episodes> SetEpisodes(List<SyndicationItem> feedList)
+        {   
+            List<Episodes> episodes = new List<Episodes>();
+            foreach (var item in feedList)
             {
                 Episodes episode = new Episodes();
                 episode.Title = item.Title.Text;
                 episode.Description = item.Summary.Text;
-                AllEpisodes.Add(episode);
-            }         
-            NumberOfEpisodes = AllEpisodes.Count();
-        }
-
-        public async Task GetUrlAsync(string url)
-        {
-            await Task.Run(() => GetUrl(url));
+                
+                episodes.Add(episode);
+            }
+           
+            return episodes;
         }
 
         public List<Episodes> ListOfEpisodes()
