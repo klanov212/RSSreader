@@ -62,27 +62,27 @@ namespace PresentationLayer
         {
             lstBoxAvsnitt.Items.Clear();
             Media media = mediaController.GetMediaById(lstViewFeed.FocusedItem.Index);
-            Task GetUrlData = media.GetUrlAsync(media.Url);
-            await GetUrlData;
+            
             {
-                foreach (Episodes item in episodes)
+                foreach (Episodes item in media.AllEpisodes)
                 {
                     lstBoxAvsnitt.Items.Add(item.Title);
+                    lblPodcastBeskrivning.Text = media.Name + ": "+ media.AllEpisodes.Count() +" avsnitt";
                 }
             }
         }
-        //private async void PopulatetxtBoxBeskrivning()
-        //{
-        //    txtBoxBeskrivning.Clear();
-        //    Media media = mediaController.GetMediaById(lstViewFeed.SelectedIndices[0]);
-        //    int i = lstBoxAvsnitt.SelectedIndex;
-        //    Task GetUrlData = media.GetUrlAsync(media.Url);
-        //    await GetUrlData;
+        private void PopulatetxtBoxBeskrivning()
+        {
+            txtBoxBeskrivning.Clear();
+            Media media = mediaController.GetMediaById(lstViewFeed.SelectedIndices[0]);
+            int i = lstBoxAvsnitt.SelectedIndex;
+            {
+                txtBoxBeskrivning.AppendText(media.ListOfEpisodes()[i].Description);
+                lblAvsinttsBeskrivning.Text = media.Name + ": " + media.ListOfEpisodes()[i].Title;
+                
+            }
 
-        //    {    
-        //            txtBoxBeskrivning.AppendText(media.ListOfEpisodes()[i].Description);
-        //    }
-        //}
+        }
         //Lägger till ny kategori
         private void btnNyKategori_Click(object sender, EventArgs e)
         {
@@ -134,46 +134,44 @@ namespace PresentationLayer
                 if (media.Category.Name.Equals(lstBoxKategori.SelectedItem))
                 {
                     
-                    media = mediaController.UpdateMedia(i, media.Name, category, media.Frequency, media.Url);
+                    mediaController.UpdateMedia(i, media.Name, category, media.Frequency, media.Url);
                 }
             }          
             PopulateViewFeed();
             PopulateCategoryListBox();
             PopulateComboBoxCategory();
             txtBoxKategori.Clear();
+
         }
         //Lägger till nya media-objekt i listView
         private void btnNyFeed_Click(object sender, EventArgs e)
         {
             int index = comboBoxKategori.SelectedIndex;
             Category theCategory = categoryController.RetrieveAllCategorys()[index];
-            Media media;
+            
             if (comboBoxFrekvens.SelectedItem.Equals("10 sek"))
             {
                 Frequency theFrequency = new _10sec();
-                media = mediaController.CreateMedia(txtBoxNamn.Text ,theCategory, theFrequency, txtBoxURL.Text);
-                Task GetUrlData = media.GetUrlAsync(txtBoxURL.Text);
-                await GetUrlData;
+                mediaController.CreateMedia(txtBoxNamn.Text ,theCategory, theFrequency, txtBoxURL.Text);
+                
             }
             else if (comboBoxFrekvens.SelectedItem.Equals("30 sek"))
             {
                 Frequency theFrequency = new _30sec();
-                media = mediaController.CreateMedia(txtBoxNamn.Text, theCategory, theFrequency, txtBoxURL.Text);
-                Task GetUrlData = media.GetUrlAsync(txtBoxURL.Text);
-                await GetUrlData;
+                mediaController.CreateMedia(txtBoxNamn.Text, theCategory, theFrequency, txtBoxURL.Text);
+                
             }
             else if (comboBoxFrekvens.SelectedItem.Equals("1 min"))
             {
                 Frequency theFrequency = new _1min();
-                media = mediaController.CreateMedia(txtBoxNamn.Text, theCategory, theFrequency, txtBoxURL.Text);
-                Task GetUrlData = media.GetUrlAsync(txtBoxURL.Text);
-                await GetUrlData;
+                mediaController.CreateMedia(txtBoxNamn.Text, theCategory, theFrequency, txtBoxURL.Text);
+                
             }
             PopulateViewFeed();
             txtBoxURL.Clear();
         }
         //Ändrar media-objekt i listView
-        private async void btnAndraFeed_Click(object sender, EventArgs e)
+        private void btnAndraFeed_Click(object sender, EventArgs e)
         {
             int index = comboBoxKategori.SelectedIndex;
             Category theCategory = categoryController.RetrieveAllCategorys()[index];
@@ -193,11 +191,9 @@ namespace PresentationLayer
                 _1min theFrequency = new _1min();
                 mediaController.UpdateMedia(lstViewFeed.SelectedIndices[0], txtBoxNamn.Text, theCategory, theFrequency, txtBoxURL.Text);
             }
-            Media media = new Media();
-            Task GetUrlData = media.GetUrlAsync(txtBoxURL.Text);
-            await GetUrlData;
             PopulateViewFeed();
             txtBoxURL.Clear();
+            txtBoxNamn.Clear();
         }
         //Tar bort media-objekt från listView
         private void btnTaBortFeed_Click(object sender, EventArgs e)
@@ -210,12 +206,12 @@ namespace PresentationLayer
         //Kallar på metoden som populerar avsnittslistan när man klickar på ett spesifikt feed i ViewFeed-listan
         private void lstViewFeed_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //PopulatelstBoxAvsnitt();
+            PopulatelstBoxAvsnitt();
         }
         //Kallar på metoden som populerar beskrivningsrutan när man klickar på ett specifikt avsnitt i avsnitslistan
         private void lstBoxAvsnitt_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //PopulatetxtBoxBeskrivning();
+            PopulatetxtBoxBeskrivning();
         }
 
         //Sorterar feedet efter vald kategori
