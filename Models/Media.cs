@@ -41,7 +41,6 @@ namespace Models
                 XmlReader reader = XmlReader.Create(url);
                 SyndicationFeed feed = SyndicationFeed.Load(reader);
                 reader.Close();
-                Name = feed.Title.Text;
                 return feed.Items.ToList();
                 
                 
