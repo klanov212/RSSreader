@@ -322,7 +322,7 @@
             this.btnAllaKategorier.Name = "btnAllaKategorier";
             this.btnAllaKategorier.Size = new System.Drawing.Size(258, 34);
             this.btnAllaKategorier.TabIndex = 24;
-            this.btnAllaKategorier.Text = "Se alla kategorier";
+            this.btnAllaKategorier.Text = "Se alla feeds";
             this.btnAllaKategorier.UseVisualStyleBackColor = true;
             this.btnAllaKategorier.Click += new System.EventHandler(this.btnAllaKategorier_Click);
             // 

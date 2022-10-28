@@ -236,7 +236,6 @@ namespace PresentationLayer
                 }               
             }           
         }
-
         private void btnAllaKategorier_Click(object sender, EventArgs e)
         {
             PopulateViewFeed();
