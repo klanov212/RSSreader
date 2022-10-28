@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using System.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.ServiceModel.Syndication;
+using Octokit;
 
 namespace PresentationLayer
 {
@@ -60,8 +61,9 @@ namespace PresentationLayer
         private void PopulatelstBoxAvsnitt()
         {
             lstBoxAvsnitt.Items.Clear();
-            Media media = mediaController.GetMediaById(lstViewFeed.SelectedIndices[0]);
-            List<Episodes> episodes = media.ListOfEpisodes();
+            Media media = mediaController.GetMediaById(lstViewFeed.FocusedItem.Index);
+            Task GetUrlData = media.GetUrlAsync(media.Url);
+            await GetUrlData;
             {
                 foreach (Episodes item in episodes)
                 {
@@ -84,22 +86,58 @@ namespace PresentationLayer
         //Lägger till ny kategori
         private void btnNyKategori_Click(object sender, EventArgs e)
         {
-            categoryController.CreateCategory(txtBoxKategori.Text);
-            PopulateCategoryListBox();
-            PopulateComboBoxCategory();
             txtBoxKategori.Clear();
+            List<Category> categorylist = categoryController.RetrieveAllCategorys();
+            for(int i = 0; i < categorylist.Count; i ++)
+            {
+                Category? category = categorylist[i];
+                if (txtBoxKategori.Text.Equals(lstBoxKategori.Text))
+                {
+                    txtBoxKategori.Text = lstBoxKategori.Text;
+                }
+            }
+            if (!txtBoxKategori.Text.Equals(lstBoxKategori.Text))
+            {
+                categoryController.CreateCategory(txtBoxKategori.Text);
+            }
+            PopulateCategoryListBox();
+            PopulateComboBoxCategory();        
         }
-        //Tar bort markerad kategori
+        //Tar bort markerad kategori och tillhörande feeds
         private void btnTaBortKategori_Click(object sender, EventArgs e)
         {
+            List<Media> medialist = mediaController.RetrieveAllMedia();
+            for (int i = 0; i < medialist.Count; i++)
+            {
+                Media? media = medialist[i];
+                if (media.Category.Name.Equals(lstBoxKategori.SelectedItem))
+                {
+                    mediaController.DeleteMedia(i);
+                }
+            }
             categoryController.DeleteCategory(lstBoxKategori.SelectedIndex);
+            PopulateViewFeed();
+            lstBoxAvsnitt.Items.Clear();
+            txtBoxBeskrivning.Clear();
             PopulateCategoryListBox();
             PopulateComboBoxCategory();
         }
-        //Ändrar namn på markerad kategori
+        //Ändrar namn på markerad kategori och de feeds som har samma kategorinamn
         private void btnAndraKategori_Click(object sender, EventArgs e)
         {
-            categoryController.UpdateCategory(lstBoxKategori.SelectedIndex, txtBoxKategori.Text);
+            Category category;
+            category = categoryController.UpdateCategory(lstBoxKategori.SelectedIndex, txtBoxKategori.Text);
+            List<Media> medialist = mediaController.RetrieveAllMedia();
+            for (int i = 0; i < medialist.Count; i++)
+            {
+                Media? media = medialist[i];
+                if (media.Category.Name.Equals(lstBoxKategori.SelectedItem))
+                {
+                    
+                    media = mediaController.UpdateMedia(i, media.Name, category, media.Frequency, media.Url);
+                }
+            }          
+            PopulateViewFeed();
             PopulateCategoryListBox();
             PopulateComboBoxCategory();
             txtBoxKategori.Clear();
@@ -109,23 +147,28 @@ namespace PresentationLayer
         {
             int index = comboBoxKategori.SelectedIndex;
             Category theCategory = categoryController.RetrieveAllCategorys()[index];
+            Media media;
             if (comboBoxFrekvens.SelectedItem.Equals("10 sek"))
             {
                 Frequency theFrequency = new _10sec();
-                mediaController.CreateMedia(theCategory, theFrequency, txtBoxURL.Text);
-                
+                media = mediaController.CreateMedia(txtBoxNamn.Text ,theCategory, theFrequency, txtBoxURL.Text);
+                Task GetUrlData = media.GetUrlAsync(txtBoxURL.Text);
+                await GetUrlData;
             }
             else if (comboBoxFrekvens.SelectedItem.Equals("30 sek"))
             {
                 Frequency theFrequency = new _30sec();
-                mediaController.CreateMedia(theCategory, theFrequency, txtBoxURL.Text);
+                media = mediaController.CreateMedia(txtBoxNamn.Text, theCategory, theFrequency, txtBoxURL.Text);
+                Task GetUrlData = media.GetUrlAsync(txtBoxURL.Text);
+                await GetUrlData;
             }
             else if (comboBoxFrekvens.SelectedItem.Equals("1 min"))
             {
                 Frequency theFrequency = new _1min();
-                mediaController.CreateMedia(theCategory, theFrequency, txtBoxURL.Text);
+                media = mediaController.CreateMedia(txtBoxNamn.Text, theCategory, theFrequency, txtBoxURL.Text);
+                Task GetUrlData = media.GetUrlAsync(txtBoxURL.Text);
+                await GetUrlData;
             }
-            
             PopulateViewFeed();
             txtBoxURL.Clear();
         }
@@ -138,17 +181,17 @@ namespace PresentationLayer
             if (comboBoxFrekvens.SelectedItem.Equals("10 sek"))
             {               
                 _10sec theFrequency = new _10sec();
-                mediaController.UpdateMedia(lstViewFeed.SelectedIndices[0], theCategory, theFrequency, txtBoxURL.Text);
+                mediaController.UpdateMedia(lstViewFeed.SelectedIndices[0], txtBoxNamn.Text, theCategory, theFrequency, txtBoxURL.Text);
             }
             else if (comboBoxFrekvens.SelectedItem.Equals("30 sek"))
             {
                 _30sec theFrequency = new _30sec();
-                mediaController.UpdateMedia(lstViewFeed.SelectedIndices[0], theCategory, theFrequency, txtBoxURL.Text);
+                mediaController.UpdateMedia(lstViewFeed.SelectedIndices[0], txtBoxNamn.Text, theCategory, theFrequency, txtBoxURL.Text);
             }
             else if (comboBoxFrekvens.SelectedItem.Equals("1 min"))
             {
                 _1min theFrequency = new _1min();
-                mediaController.UpdateMedia(lstViewFeed.SelectedIndices[0], theCategory, theFrequency, txtBoxURL.Text);
+                mediaController.UpdateMedia(lstViewFeed.SelectedIndices[0], txtBoxNamn.Text, theCategory, theFrequency, txtBoxURL.Text);
             }
             Media media = new Media();
             Task GetUrlData = media.GetUrlAsync(txtBoxURL.Text);
@@ -161,6 +204,8 @@ namespace PresentationLayer
         {
             mediaController.DeleteMedia(lstViewFeed.SelectedIndices[0]);
             PopulateViewFeed();
+            lstBoxAvsnitt.Items.Clear();
+            txtBoxBeskrivning.Clear();
         }
         //Kallar på metoden som populerar avsnittslistan när man klickar på ett spesifikt feed i ViewFeed-listan
         private void lstViewFeed_SelectedIndexChanged(object sender, EventArgs e)
@@ -188,6 +233,11 @@ namespace PresentationLayer
                     lstViewFeed.Items.Add(media.NumberOfEpisodes.ToString()).SubItems.AddRange(row1);
                 }               
             }           
+        }
+
+        private void btnAllaKategorier_Click(object sender, EventArgs e)
+        {
+            PopulateViewFeed();
         }
     }
 }

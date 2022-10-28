@@ -20,12 +20,14 @@ namespace Models
         public List<Episodes> AllEpisodes { get; set; }
         public int NumberOfEpisodes { get; set; }
 
-        public Media(Category category, Frequency frequency, string url)
+        public Media(string name, Category category, Frequency frequency, string url)
         {
             Category = category;
             Frequency = frequency;
             Url = url;
+            Name = name;
         }
+
         public Media()
         {
 

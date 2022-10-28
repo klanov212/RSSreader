@@ -21,8 +21,12 @@ namespace LogicLayer
             mediaObj.AllEpisodes = mediaObj.SetEpisodes(feedList);
             mediaObj.NumberOfEpisodes = mediaObj.AllEpisodes.Count();
             mediaRepository.Insert(mediaObj); 
+        public Media CreateMedia(string name, Category category, Frequency frequency, string url)
+        {
+            Media mediaObj = new Media(name, category, frequency, url);
+            mediaRepository.Insert(mediaObj);
+            return mediaObj;
         }
-
         public List<Media> RetrieveAllMedia() 
         { 
             return mediaRepository.GetAll(); 
@@ -31,10 +35,11 @@ namespace LogicLayer
         {
             mediaRepository.Delete(index);
         }
-        public void UpdateMedia(int index, Category category, Frequency frequency, string url)
+        public Media UpdateMedia(int index, string name, Category category, Frequency frequency, string url)
         {
-            Media mediaObj = new Media(category, frequency, url);
+            Media mediaObj = new Media(name, category, frequency, url);
             mediaRepository.Update(index, mediaObj);
+            return mediaObj;
         }
         public Media GetMediaById(int index)
         {
