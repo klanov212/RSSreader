@@ -6,7 +6,20 @@ using System.Threading.Tasks;
 
 namespace PresentationLayer
 {
-    internal class Validation
+    public class Validation
     {
+        public Validation()
+        {
+
+        }
+
+        public void CheckDuplicate(TextBox tb, string str)
+        {
+            if (tb.Text.Equals(str))
+            {
+                MessageBox.Show(tb.Text + " finns redan");
+                throw new Exception();
+            }
+        }
     }
 }

@@ -12,12 +12,14 @@ namespace PresentationLayer
     {
         MediaController mediaController;
         CategoryController categoryController;
+        Validation validation;
         //FrequencyController frequencyController;
         public Form1()
         {
             InitializeComponent();
             mediaController = new MediaController();
             categoryController = new CategoryController();
+            validation = new Validation();
             //frequencyController = new FrequencyController();
         }
         //Fyller alla fällt i formen när man kör programmet
@@ -86,9 +88,22 @@ namespace PresentationLayer
         //Lägger till ny kategori men ej dublett-värden
         private void btnNyKategori_Click(object sender, EventArgs e)
         {
-            categoryController.CreateCategory(txtBoxKategori.Text);
-            PopulateCategoryListBox();
-            PopulateComboBoxCategory();        
+            try
+            {
+                foreach (Category category in categoryController.RetrieveAllCategorys())
+                {
+                    validation.CheckDuplicate(txtBoxKategori, category.Name);
+
+                }
+
+                categoryController.CreateCategory(txtBoxKategori.Text);
+                PopulateCategoryListBox();
+                PopulateComboBoxCategory();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
         //Tar bort markerad kategori och tillhörande feeds
         private void btnTaBortKategori_Click(object sender, EventArgs e)
