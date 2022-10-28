@@ -108,21 +108,36 @@ namespace PresentationLayer
         //Tar bort markerad kategori och tillhörande feeds
         private void btnTaBortKategori_Click(object sender, EventArgs e)
         {
-            List<Media> medialist = mediaController.RetrieveAllMedia();
-            for (int i = 0; i < medialist.Count; i++)
+           DialogResult dr = MessageBox.Show("Du håller på att ta bort kategorin " + lstBoxKategori.SelectedItem +
+                " och dess tillhörande feed", "", MessageBoxButtons.OKCancel);
+
+            switch (dr)
             {
-                Media? media = medialist[i];
-                if (media.Category.Name.Equals(lstBoxKategori.SelectedItem))
-                {
-                    mediaController.DeleteMedia(i);
-                }
+                case DialogResult.OK:
+                    List<Media> medialist = mediaController.RetrieveAllMedia();
+                    for (int i = 0; i < medialist.Count; i++)
+                    {
+                        Media? media = medialist[i];
+                        if (media.Category.Name.Equals(lstBoxKategori.SelectedItem))
+                        {
+                            mediaController.DeleteMedia(i);
+                        }
+                    }
+                    categoryController.DeleteCategory(lstBoxKategori.SelectedIndex);
+                    PopulateViewFeed();
+                    lstBoxAvsnitt.Items.Clear();
+                    txtBoxBeskrivning.Clear();
+                    PopulateCategoryListBox();
+                    PopulateComboBoxCategory();
+                    break;
+
+                case DialogResult.Cancel:
+                    break;
+
+                default:
+                    break;
             }
-            categoryController.DeleteCategory(lstBoxKategori.SelectedIndex);
-            PopulateViewFeed();
-            lstBoxAvsnitt.Items.Clear();
-            txtBoxBeskrivning.Clear();
-            PopulateCategoryListBox();
-            PopulateComboBoxCategory();
+            
         }
         //Ändrar namn på markerad kategori och de feeds som har samma kategorinamn
         private void btnAndraKategori_Click(object sender, EventArgs e)

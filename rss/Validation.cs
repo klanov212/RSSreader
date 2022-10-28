@@ -13,6 +13,7 @@ namespace PresentationLayer
 
         }
 
+        // Metod som förhindrar dubletter när man lägger till nya kategorier
         public void CheckDuplicate(TextBox tb, string str)
         {
             if (tb.Text.Equals(str))
@@ -21,5 +22,7 @@ namespace PresentationLayer
                 throw new Exception();
             }
         }
+
+       
     }
 }
