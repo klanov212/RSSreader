@@ -169,32 +169,39 @@ namespace PresentationLayer
         //Lägger till nya media-objekt i listView
         private async void btnNyFeed_Click(object sender, EventArgs e)
         {
-            int index = comboBoxKategori.SelectedIndex;
-            Category theCategory = categoryController.RetrieveAllCategorys()[index];
-            Media media;
-            if (comboBoxFrekvens.SelectedItem.Equals("10 sek"))
+            try
             {
-                Frequency theFrequency = new _10sec();
-                media = mediaController.CreateMedia(txtBoxNamn.Text ,theCategory, theFrequency, txtBoxURL.Text);
-                Task GetUrlData = media.GetUrlAsync(txtBoxURL.Text);
-                await GetUrlData;
+                validation.CheckEmptyFields(txtBoxURL, comboBoxFrekvens, comboBoxKategori, txtBoxNamn);
+
+                int index = comboBoxKategori.SelectedIndex;
+                Category theCategory = categoryController.RetrieveAllCategorys()[index];
+                Media media;
+                if (comboBoxFrekvens.SelectedItem.Equals("10 sek"))
+                {
+                    Frequency theFrequency = new _10sec();
+                    media = mediaController.CreateMedia(txtBoxNamn.Text, theCategory, theFrequency, txtBoxURL.Text);
+                    Task GetUrlData = media.GetUrlAsync(txtBoxURL.Text);
+                    await GetUrlData;
+                }
+                else if (comboBoxFrekvens.SelectedItem.Equals("30 sek"))
+                {
+                    Frequency theFrequency = new _30sec();
+                    media = mediaController.CreateMedia(txtBoxNamn.Text, theCategory, theFrequency, txtBoxURL.Text);
+                    Task GetUrlData = media.GetUrlAsync(txtBoxURL.Text);
+                    await GetUrlData;
+                }
+                else if (comboBoxFrekvens.SelectedItem.Equals("1 min"))
+                {
+                    Frequency theFrequency = new _1min();
+                    media = mediaController.CreateMedia(txtBoxNamn.Text, theCategory, theFrequency, txtBoxURL.Text);
+                    Task GetUrlData = media.GetUrlAsync(txtBoxURL.Text);
+                    await GetUrlData;
+                }
+                PopulateViewFeed();
+                txtBoxURL.Clear();
             }
-            else if (comboBoxFrekvens.SelectedItem.Equals("30 sek"))
-            {
-                Frequency theFrequency = new _30sec();
-                media = mediaController.CreateMedia(txtBoxNamn.Text, theCategory, theFrequency, txtBoxURL.Text);
-                Task GetUrlData = media.GetUrlAsync(txtBoxURL.Text);
-                await GetUrlData;
-            }
-            else if (comboBoxFrekvens.SelectedItem.Equals("1 min"))
-            {
-                Frequency theFrequency = new _1min();
-                media = mediaController.CreateMedia(txtBoxNamn.Text, theCategory, theFrequency, txtBoxURL.Text);
-                Task GetUrlData = media.GetUrlAsync(txtBoxURL.Text);
-                await GetUrlData;
-            }
-            PopulateViewFeed();
-            txtBoxURL.Clear();
+                catch(Exception) { }
+                
         }
         //Ändrar media-objekt i listView
         private async void btnAndraFeed_Click(object sender, EventArgs e)
