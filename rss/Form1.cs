@@ -86,32 +86,8 @@ namespace PresentationLayer
         //Lägger till ny kategori men ej dublett-värden
         private void btnNyKategori_Click(object sender, EventArgs e)
         {
+            categoryController.CreateCategory(txtBoxKategori.Text);
             txtBoxKategori.Clear();
-            List<Category> categorylist = categoryController.RetrieveAllCategorys();
-            for(int i = 0; i < categorylist.Count; i ++)
-            {
-                Category? category = categorylist[i];
-                if (txtBoxKategori.Text.Equals(lstBoxKategori.Text))
-                {
-                    txtBoxKategori.Text = lstBoxKategori.Text;
-                }
-            }
-            if (!txtBoxKategori.Text.Equals(lstBoxKategori.Text))
-            {
-                categoryController.CreateCategory(txtBoxKategori.Text);
-            }
-            for(int i = 0; i < categorylist.Count; i ++)
-            {
-                Category? category = categorylist[i];
-                if (txtBoxKategori.Text.Equals(lstBoxKategori.Text))
-                {
-                    txtBoxKategori.Text = lstBoxKategori.Text;
-                }
-            }
-            if (!txtBoxKategori.Text.Equals(lstBoxKategori.Text))
-            {
-                categoryController.CreateCategory(txtBoxKategori.Text);
-            }
             PopulateCategoryListBox();
             PopulateComboBoxCategory();        
         }
@@ -179,10 +155,11 @@ namespace PresentationLayer
                 mediaController.CreateMedia(txtBoxNamn.Text, theCategory, theFrequency, txtBoxURL.Text);
                 
             }
+
             txtBoxURL.Clear();
             txtBoxNamn.Clear();
-            comboBoxFrekvens.Items.Clear();
-            comboBoxKategori.Items.Clear();
+            comboBoxFrekvens.Text = "Uppspelningsfrekvens";
+            comboBoxKategori.Text = "Välj kategori";
             PopulateViewFeed();
         }
         //Ändrar media-objekt i listView
@@ -207,6 +184,8 @@ namespace PresentationLayer
                 mediaController.UpdateMedia(lstViewFeed.SelectedIndices[0], txtBoxNamn.Text, theCategory, theFrequency, txtBoxURL.Text);
             }
             PopulateViewFeed();
+            comboBoxFrekvens.Text = "Uppspelningsfrekvens";
+            comboBoxKategori.Text = "Välj kategori";
             txtBoxURL.Clear();
             txtBoxNamn.Clear();
         }
