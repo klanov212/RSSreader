@@ -20,6 +20,7 @@ namespace LogicLayer
         {
             Category categoryObj = new Category(name);
             categoryRepository.Insert(categoryObj);
+            
         }
 
         public List<Category> RetrieveAllCategorys() 

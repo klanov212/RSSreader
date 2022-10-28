@@ -83,23 +83,11 @@ namespace PresentationLayer
             }
 
         }
-        //Lägger till ny kategori
+        //Lägger till ny kategori men ej dublett-värden
         private void btnNyKategori_Click(object sender, EventArgs e)
-        {
+        {   
+            categoryController.CreateCategory(txtBoxKategori.Text);
             txtBoxKategori.Clear();
-            List<Category> categorylist = categoryController.RetrieveAllCategorys();
-            for(int i = 0; i < categorylist.Count; i ++)
-            {
-                Category? category = categorylist[i];
-                if (txtBoxKategori.Text.Equals(lstBoxKategori.Text))
-                {
-                    txtBoxKategori.Text = lstBoxKategori.Text;
-                }
-            }
-            if (!txtBoxKategori.Text.Equals(lstBoxKategori.Text))
-            {
-                categoryController.CreateCategory(txtBoxKategori.Text);
-            }
             PopulateCategoryListBox();
             PopulateComboBoxCategory();        
         }
