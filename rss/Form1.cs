@@ -155,10 +155,11 @@ namespace PresentationLayer
                 mediaController.CreateMedia(txtBoxNamn.Text, theCategory, theFrequency, txtBoxURL.Text);
                 
             }
-            PopulateViewFeed();
             txtBoxURL.Clear();
             txtBoxNamn.Clear();
-
+            comboBoxFrekvens.Items.Clear();
+            comboBoxKategori.Items.Clear();
+            PopulateViewFeed();
         }
         //Ändrar media-objekt i listView
         private void btnAndraFeed_Click(object sender, EventArgs e)
