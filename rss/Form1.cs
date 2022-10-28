@@ -108,11 +108,11 @@ namespace PresentationLayer
         //Tar bort markerad kategori och tillhörande feeds
         private void btnTaBortKategori_Click(object sender, EventArgs e)
         {
-           DialogResult dr = MessageBox.Show("Du håller på att ta bort kategorin " + lstBoxKategori.SelectedItem +
+           DialogResult dialog = MessageBox.Show("Du håller nu på att ta bort kategorin " + lstBoxKategori.SelectedItem +
                 " och dess tillhörande feed", "", MessageBoxButtons.OKCancel);
             try
             {
-                switch (dr)
+                switch (dialog)
                 {
                     case DialogResult.OK:
                         List<Media> medialist = mediaController.RetrieveAllMedia();
@@ -226,10 +226,25 @@ namespace PresentationLayer
         //Tar bort media-objekt från listView
         private void btnTaBortFeed_Click(object sender, EventArgs e)
         {
-            mediaController.DeleteMedia(lstViewFeed.SelectedIndices[0]);
-            PopulateViewFeed();
-            lstBoxAvsnitt.Items.Clear();
-            txtBoxBeskrivning.Clear();
+            DialogResult dialog = MessageBox.Show("Du håller nu på att ta bort " + lstViewFeed.SelectedItems, 
+                "", MessageBoxButtons.OKCancel);
+
+            switch(dialog)
+            {
+                case DialogResult.OK:
+                mediaController.DeleteMedia(lstViewFeed.SelectedIndices[0]);
+                PopulateViewFeed();
+                lstBoxAvsnitt.Items.Clear();
+                txtBoxBeskrivning.Clear();
+                    break;
+
+                case DialogResult.Cancel:
+                    break;
+
+                default: 
+                    break;
+            }
+            
         }
         //Kallar på metoden som populerar avsnittslistan när man klickar på ett spesifikt feed i ViewFeed-listan
         private void lstViewFeed_SelectedIndexChanged(object sender, EventArgs e)
