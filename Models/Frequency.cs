@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using System.Xml.Serialization;
 
 namespace Models
@@ -15,26 +16,22 @@ namespace Models
     public class Frequency
     {
         public virtual double UpdateTime { get; set; }
-        public DateTime UpdateNext { get; set; }
+        public DateTime NextUpdate { get; set; }
         public Frequency()
-        {            
+        {
             Update();
         }
         public bool NeedsUpdate
         {
             get
             {
-                // Om nästa uppdatering är innan nuvarande klockslag så ska en uppdatering ske
-                // dvs metoden NeedsUpdate ska returnera true
-                return UpdateNext <= DateTime.Now;
+                return NextUpdate <= DateTime.Now;
             }
         }
-        public void Update()
+        public string Update()
         {
-            // nästa uppdatering sker om "UpdateInterval" minuter
-            // Vi hittar den tidpunkten genom att lägga till det antalet millisekunder till den 
-            // nuvarande tiden.
-            UpdateNext = DateTime.Now.AddMilliseconds(UpdateTime);           
+            NextUpdate = DateTime.Now.AddMilliseconds(UpdateTime);
+            return "'s Update() was invoked. Next update is at " + NextUpdate;
         }
     }
 }

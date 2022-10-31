@@ -6,6 +6,8 @@ using System.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.ServiceModel.Syndication;
 using Octokit;
+using Timer = System.Windows.Forms.Timer;
+using System.Reflection;
 
 namespace PresentationLayer
 {
@@ -13,13 +15,21 @@ namespace PresentationLayer
     {
         MediaController mediaController;
         CategoryController categoryController;
-        //FrequencyController frequencyController;
+        private Timer timer= new Timer();
         public Form1()
         {
             InitializeComponent();
             mediaController = new MediaController();
             categoryController = new CategoryController();
-            //frequencyController = new FrequencyController();
+
+            // kör timer 1 gång per sekund
+            timer.Interval = 10000;
+            // Koppla event handler Timer_Tick() som ska köras varje gång timern körs dvs varje sekund
+            // Tick är en event i klassen Timer som använder en inbyggd delegat EventHandler(object sender, EventArgs e); 
+            timer.Tick += Timer_Tick;
+            // starta timer
+            timer.Start();
+
         }
         //Fyller alla fällt i formen när man kör programmet
         private void Form1_Load(object sender, EventArgs e)
@@ -27,6 +37,20 @@ namespace PresentationLayer
             PopulateCategoryListBox();
             PopulateComboBoxCategory();
             PopulateViewFeed();
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {          
+            //Detta funkar inte
+            
+            foreach (Media media in mediaController.RetrieveAllMedia())
+            {
+                if (media.Frequency.NeedsUpdate)
+                {                 
+                    mediaController.UpdateUrl();
+                    media.Frequency.Update();
+                }
+            }  
         }
         //Metod för att fylla kategori-listboxen med kategorier från xml-filen
         private void PopulateCategoryListBox()
@@ -77,9 +101,8 @@ namespace PresentationLayer
             Media media = mediaController.GetMediaById(lstViewFeed.SelectedIndices[0]);
             int i = lstBoxAvsnitt.SelectedIndex;
             {
-                txtBoxBeskrivning.AppendText(media.ListOfEpisodes()[i].Description);
+                txtBoxBeskrivning.AppendText(media.ListOfEpisodes()[i].Description + "\n\nPublicerad: " + media.ListOfEpisodes()[i].PubDate);
                 lblAvsinttsBeskrivning.Text = media.Name + ": " + media.ListOfEpisodes()[i].Title;
-                
             }
 
         }
@@ -93,7 +116,7 @@ namespace PresentationLayer
         }
         //Tar bort markerad kategori och tillhörande feeds
         private void btnTaBortKategori_Click(object sender, EventArgs e)
-        {
+        { 
             List<Media> medialist = mediaController.RetrieveAllMedia();
             for (int i = 0; i < medialist.Count; i++)
             {
@@ -141,26 +164,22 @@ namespace PresentationLayer
             {
                 Frequency theFrequency = new _10sec();
                 mediaController.CreateMedia(txtBoxNamn.Text ,theCategory, theFrequency, txtBoxURL.Text);
-                
             }
             else if (comboBoxFrekvens.SelectedItem.Equals("30 sek"))
             {
                 Frequency theFrequency = new _30sec();
                 mediaController.CreateMedia(txtBoxNamn.Text, theCategory, theFrequency, txtBoxURL.Text);
-                
             }
             else if (comboBoxFrekvens.SelectedItem.Equals("1 min"))
             {
                 Frequency theFrequency = new _1min();
                 mediaController.CreateMedia(txtBoxNamn.Text, theCategory, theFrequency, txtBoxURL.Text);
-                
             }
-
+            PopulateViewFeed();
             txtBoxURL.Clear();
             txtBoxNamn.Clear();
             comboBoxFrekvens.Text = "Uppspelningsfrekvens";
             comboBoxKategori.Text = "Välj kategori";
-            PopulateViewFeed();
         }
         //Ändrar media-objekt i listView
         private void btnAndraFeed_Click(object sender, EventArgs e)
