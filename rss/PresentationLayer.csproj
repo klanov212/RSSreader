@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.ServiceModel.Syndication" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\LogikLager\LogicLayer.csproj" />
     <ProjectReference Include="..\Models\Models.csproj" />
   </ItemGroup>
