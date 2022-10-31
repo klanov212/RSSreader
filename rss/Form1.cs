@@ -103,7 +103,7 @@ namespace PresentationLayer
         {
             try
             {
-                validation.CheckEmpyField(txtBoxKategori);
+                validation.CheckEmpyFields(txtBoxKategori);
                 foreach (Category category in categoryController.RetrieveAllCategorys())
                 {
                     validation.CheckDuplicate(txtBoxKategori, category.Name);
@@ -159,7 +159,7 @@ namespace PresentationLayer
         {
             try
             {
-                validation.CheckEmpyField(txtBoxKategori);
+                validation.CheckEmpyFields(txtBoxKategori);
                 validation.CheckItemSelected(lstBoxKategori);
 
                 Category category;
@@ -222,6 +222,7 @@ namespace PresentationLayer
                 txtBoxNamn.Clear();
                 comboBoxFrekvens.Text = "Uppspelningsfrekvens";
                 comboBoxKategori.Text = "Välj kategori";
+                MessageBox.Show("Din feed har lagts till!", "", MessageBoxButtons.OK);
                 PopulateViewFeed();
             }
             catch(EmptyFieldException)
@@ -239,6 +240,7 @@ namespace PresentationLayer
             try
             {
                 validation.CheckItemSelected(lstViewFeed);
+                validation.CheckEmptyFields(txtBoxURL, comboBoxFrekvens, comboBoxKategori, txtBoxNamn);
                 
                 int index = comboBoxKategori.SelectedIndex;
                 Category theCategory = categoryController.RetrieveAllCategorys()[index];
@@ -258,11 +260,13 @@ namespace PresentationLayer
                     _1min theFrequency = new _1min();
                     mediaController.UpdateMedia(lstViewFeed.SelectedIndices[0], txtBoxNamn.Text, theCategory, theFrequency, txtBoxURL.Text);
                 }
-                PopulateViewFeed();
+                
                 comboBoxFrekvens.Text = "Uppspelningsfrekvens";
                 comboBoxKategori.Text = "Välj kategori";
                 txtBoxURL.Clear();
                 txtBoxNamn.Clear();
+                MessageBox.Show("Din feed har ändrats!", "", MessageBoxButtons.OK);
+                PopulateViewFeed();
             }
             catch(NullReferenceException) { }
             catch(Exception) { }

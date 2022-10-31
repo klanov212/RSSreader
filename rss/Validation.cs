@@ -24,19 +24,19 @@ namespace PresentationLayer
         }
 
         // Metod som kollar tomma fält när man lägger till feeds
-        public void CheckEmptyFields(TextBox tb1, ComboBox cb1, ComboBox cb2, TextBox tb2)
+        public void CheckEmptyFields(TextBox url, ComboBox frequency, ComboBox category, TextBox tb2)
         {
-            if (tb1.Text.Equals(""))
+            if (url.Text.Equals(""))
             {
                 MessageBox.Show("Vänligen fyll i en URL");
                 throw new EmptyFieldException();
             }
-            else if (cb1.SelectedIndex < 0)
+            else if (frequency.SelectedIndex < 0)
             {
                 MessageBox.Show("Vänligen välj en uppdateringsfrekvens");
                 throw new EmptyFieldException();
             }
-            else if (cb2.SelectedIndex < 0)
+            else if (category.SelectedIndex < 0)
             {
                 MessageBox.Show("Vänligen välj en kategori");
                 throw new EmptyFieldException();
@@ -49,7 +49,7 @@ namespace PresentationLayer
         }
 
         // Metod som kollar tomt fält när man lägger till ny kategori
-        public void CheckEmpyField(TextBox tb)
+        public void CheckEmpyFields(TextBox tb)
         {
             if (tb.Text.Equals(""))
             {
