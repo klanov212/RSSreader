@@ -17,7 +17,7 @@ namespace PresentationLayer
         CategoryController categoryController;
         private Timer timer= new Timer();
         Validation validation;
-        //FrequencyController frequencyController;
+     
         public Form1()
         {
             InitializeComponent();
