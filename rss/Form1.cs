@@ -203,9 +203,9 @@ namespace PresentationLayer
                 comboBoxKategori.Text = "Välj kategori";
                 PopulateViewFeed();
             }
-            catch(Exception ex)
+            catch(EmptyFieldException ex)
             {
-
+          
             }
         }
 

@@ -28,22 +28,22 @@ namespace PresentationLayer
             if (tb1.Text.Equals(""))
             {
                 MessageBox.Show("Vänligen fyll i en URL");
-                throw new Exception();
+                throw new EmptyFieldException("Fältet har lämnats tomt", "URL");
             }
             else if (cb1.SelectedIndex < 0)
             {
                 MessageBox.Show("Vänligen välj en uppdateringsfrekvens");
-                throw new Exception();
+                throw new EmptyFieldException("Fältet har lämnats tomt", "Frekvens");
             }
             else if (cb2.SelectedIndex < 0)
             {
                 MessageBox.Show("Vänligen välj en kategori");
-                throw new Exception();
+                throw new EmptyFieldException("Fältet har lämnats tomt", "Kategori");
             }
             else if (tb2.Text.Equals(""))
             {
                 MessageBox.Show("Vänligen ange ett namn");
-                throw new Exception();
+                throw new EmptyFieldException("Fältet har lämnats tomt", "Feednamn");
             }
         }
 
@@ -52,7 +52,7 @@ namespace PresentationLayer
             if (tb.Text.Equals(""))
             {
                 MessageBox.Show("Vänligen fyll i ett kategorinamn");
-                throw new Exception();
+                throw new EmptyFieldException("Fältet har lämnats tomt", "Kategori");
             }
         }
     }
