@@ -19,7 +19,21 @@ namespace Models
         public DateTime NextUpdate { get; set; }
         public Frequency()
         {
-            
-        }      
+            Update();
+        }
+
+        public string Update()
+        {
+            NextUpdate = DateTime.Now.AddMilliseconds(UpdateTime);
+            return "'s Update() was invoked. Next update is at " + NextUpdate;
+        }
+        public bool NeedsUpdate
+        {
+            get
+            {
+                return NextUpdate <= DateTime.Now;
+            }
+        }
+       
     }
 }
