@@ -68,7 +68,7 @@ namespace PresentationLayer
                 throw new FormatException();
             }
         }
-
+        //Medtod som kollar så att media-objekt är vald
         public void CheckItemSelected(ListView lst)
         {
             if (lst.FocusedItem == null)
