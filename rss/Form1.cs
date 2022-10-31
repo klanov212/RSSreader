@@ -156,6 +156,8 @@ namespace PresentationLayer
             try
             {
                 validation.CheckEmpyField(txtBoxKategori);
+                validation.CheckItemSelected(lstBoxKategori);
+
                 Category category;
                 category = categoryController.UpdateCategory(lstBoxKategori.SelectedIndex, txtBoxKategori.Text);
                 List<Media> medialist = mediaController.RetrieveAllMedia();
@@ -232,6 +234,7 @@ namespace PresentationLayer
         {
             try
             {
+                validation.CheckItemSelected(lstViewFeed);
                 
                 int index = comboBoxKategori.SelectedIndex;
                 Category theCategory = categoryController.RetrieveAllCategorys()[index];
@@ -257,6 +260,7 @@ namespace PresentationLayer
                 txtBoxURL.Clear();
                 txtBoxNamn.Clear();
             }
+            catch(NullReferenceException) { }
             catch(Exception) { }
         }
         //Tar bort media-objekt från listView

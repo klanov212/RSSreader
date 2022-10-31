@@ -56,6 +56,7 @@ namespace PresentationLayer
                 MessageBox.Show("Vänligen fyll i ett kategorinamn");
                 throw new EmptyFieldException();
             }
+            
         }
 
         // Metod som kollar att formatet på URL:er är korrekt
@@ -70,9 +71,19 @@ namespace PresentationLayer
 
         public void CheckItemSelected(ListView lst)
         {
-            if(lst.SelectedIndices.Equals(0)) 
+            if (lst.FocusedItem == null)
             {
-                MessageBox.Show("Vänligen ange en giltig URL");
+                MessageBox.Show("Vänligen välj ett objekt i listan som du vill ändra");
+                throw new Exception();
+           }
+        }
+
+
+        public void CheckItemSelected(ListBox lst)
+        {
+            if (lst.SelectedIndex < 0)
+            {
+                MessageBox.Show("Vänligen välj ett objekt i listan som du vill ändra");
                 throw new Exception();
             }
         }
