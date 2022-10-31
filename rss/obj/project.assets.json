@@ -134,27 +134,24 @@
   "projectFileDependencyGroups": {
     "net6.0-windows7.0": [
       "LogicLayer >= 1.0.0",
-      "Models >= 1.0.0"
+      "Models >= 1.0.0",
+      "System.ServiceModel.Syndication >= 6.0.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\perni\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\Klara Nordström\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\perni\\source\\repos\\klanov212\\RSSreader\\rss\\PresentationLayer.csproj",
+      "projectUniqueName": "C:\\Users\\Klara Nordström\\OneDrive\\Örebro Universitet\\Programmeringsprojekt\\RSSreader\\rss\\PresentationLayer.csproj",
       "projectName": "PresentationLayer",
-      "projectPath": "C:\\Users\\perni\\source\\repos\\klanov212\\RSSreader\\rss\\PresentationLayer.csproj",
-      "packagesPath": "C:\\Users\\perni\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\perni\\source\\repos\\klanov212\\RSSreader\\rss\\obj\\",
+      "projectPath": "C:\\Users\\Klara Nordström\\OneDrive\\Örebro Universitet\\Programmeringsprojekt\\RSSreader\\rss\\PresentationLayer.csproj",
+      "packagesPath": "C:\\Users\\Klara Nordström\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Klara Nordström\\OneDrive\\Örebro Universitet\\Programmeringsprojekt\\RSSreader\\rss\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\perni\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Klara Nordström\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -168,11 +165,11 @@
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
           "projectReferences": {
-            "C:\\Users\\perni\\source\\repos\\klanov212\\RSSreader\\LogikLager\\LogicLayer.csproj": {
-              "projectPath": "C:\\Users\\perni\\source\\repos\\klanov212\\RSSreader\\LogikLager\\LogicLayer.csproj"
+            "C:\\Users\\Klara Nordström\\OneDrive\\Örebro Universitet\\Programmeringsprojekt\\RSSreader\\LogikLager\\LogicLayer.csproj": {
+              "projectPath": "C:\\Users\\Klara Nordström\\OneDrive\\Örebro Universitet\\Programmeringsprojekt\\RSSreader\\LogikLager\\LogicLayer.csproj"
             },
-            "C:\\Users\\perni\\source\\repos\\klanov212\\RSSreader\\Models\\Models.csproj": {
-              "projectPath": "C:\\Users\\perni\\source\\repos\\klanov212\\RSSreader\\Models\\Models.csproj"
+            "C:\\Users\\Klara Nordström\\OneDrive\\Örebro Universitet\\Programmeringsprojekt\\RSSreader\\Models\\Models.csproj": {
+              "projectPath": "C:\\Users\\Klara Nordström\\OneDrive\\Örebro Universitet\\Programmeringsprojekt\\RSSreader\\Models\\Models.csproj"
             }
           }
         }
@@ -186,6 +183,12 @@
     "frameworks": {
       "net6.0-windows7.0": {
         "targetAlias": "net6.0-windows",
+        "dependencies": {
+          "System.ServiceModel.Syndication": {
+            "target": "Package",
+            "version": "[6.0.0, )"
+          }
+        },
         "imports": [
           "net461",
           "net462",
