@@ -62,6 +62,7 @@ namespace PresentationLayer
                 lstBoxKategori.Items.Add(category.Name);
             }
         }
+        //Metod för att fylla kategori-comboboxen
         private void PopulateComboBoxCategory()
         {
             comboBoxKategori.Items.Clear();
@@ -71,7 +72,7 @@ namespace PresentationLayer
                 comboBoxKategori.Items.Add(category.Name);
             }
         }
-
+        //Metod för att fylla Viewfeeden med alla media-objekt
         private void PopulateViewFeed()
         {
             lstViewFeed.Items.Clear();
@@ -82,6 +83,7 @@ namespace PresentationLayer
                 lstViewFeed.Items.Add(media.NumberOfEpisodes.ToString()).SubItems.AddRange(row1);
             }
         }
+        //Metod för att fylla listboxen med varje episode-title
         private void PopulatelstBoxAvsnitt()
         {
             lstBoxAvsnitt.Items.Clear();
@@ -96,6 +98,7 @@ namespace PresentationLayer
                 }
             }
         }
+        //Metod för att fylla listboxen med varje episode-description
         private void PopulatetxtBoxBeskrivning()
         {
             txtBoxBeskrivning.Clear();
@@ -107,7 +110,7 @@ namespace PresentationLayer
             }
 
         }
-        //Lägger till ny kategori men ej dublett-värden
+        //Lägger till ny kategori
         private void btnNyKategori_Click(object sender, EventArgs e)
         {
             categoryController.CreateCategory(txtBoxKategori.Text);
@@ -121,11 +124,13 @@ namespace PresentationLayer
             List<Media> medialist = mediaController.RetrieveAllMedia();
             for (int i = 0; i < medialist.Count; i++)
             {
-                Media? media = medialist[i];
+                Media media = medialist[i];
                 if (media.Category.Name.Equals(lstBoxKategori.SelectedItem))
                 {
                     mediaController.DeleteMedia(i);
+                    i--;
                 }
+                medialist = mediaController.RetrieveAllMedia();
             }
             categoryController.DeleteCategory(lstBoxKategori.SelectedIndex);
             PopulateViewFeed();
@@ -176,11 +181,13 @@ namespace PresentationLayer
                 Frequency theFrequency = new _1min();
                 mediaController.CreateMedia(txtBoxNamn.Text, theCategory, theFrequency, txtBoxURL.Text);
             }
-            PopulateViewFeed();
+
             txtBoxURL.Clear();
             txtBoxNamn.Clear();
             comboBoxFrekvens.Text = "Uppspelningsfrekvens";
             comboBoxKategori.Text = "Välj kategori";
+            MessageBox.Show("Din feed har lagts till!", "" , MessageBoxButtons.OK);
+            PopulateViewFeed();
         }
         //Ändrar media-objekt i listView
         private void btnAndraFeed_Click(object sender, EventArgs e)
@@ -223,6 +230,8 @@ namespace PresentationLayer
             lblPodcastBeskrivning.Text = "Podcasts: Avsnitt";
             lblAvsinttsBeskrivning.Text = "Avsnitt";
             PopulatelstBoxAvsnitt();
+            Media media = mediaController.GetMediaById(lstViewFeed.FocusedItem.Index);
+            txtBoxURL.Text = media.Url;
         }
         //Kallar på metoden som populerar beskrivningsrutan när man klickar på ett specifikt avsnitt i avsnitslistan
         private void lstBoxAvsnitt_SelectedIndexChanged(object sender, EventArgs e)
@@ -241,17 +250,15 @@ namespace PresentationLayer
             lblPodcastBeskrivning.Text = "Podcasts: Avsnitt";
             lblAvsinttsBeskrivning.Text = "Avsnitt";
             List<Media> medialist = mediaController.RetrieveAllMedia();
-            foreach (var media in medialist)
+            foreach (var media in medialist.Where(media => media.Category.Name.Equals(lstBoxKategori.SelectedItem)))
             {
-                if (media.Category.Name.Equals(lstBoxKategori.SelectedItem))
-                {
-                    Task GetUrlData = media.GetUrlAsync(media.Url);
-                    await GetUrlData;
-                    string[] row1 = { media.Name, media.Frequency.GetType().ToString().Substring(8), media.Category.Name };
-                    lstViewFeed.Items.Add(media.NumberOfEpisodes.ToString()).SubItems.AddRange(row1);
-                }               
-            }           
+                Task GetUrlData = media.GetUrlAsync(media.Url);
+                await GetUrlData;
+                string[] row1 = { media.Name, media.Frequency.GetType().ToString().Substring(8), media.Category.Name };
+                lstViewFeed.Items.Add(media.NumberOfEpisodes.ToString()).SubItems.AddRange(row1);
+            }
         }
+        //Visar alla kategorier när man klickar på "Updatera feedlistan"-knappen.
         private void btnAllaKategorier_Click(object sender, EventArgs e)
         {
             lstBoxAvsnitt.Items.Clear();

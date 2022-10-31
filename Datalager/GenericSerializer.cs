@@ -23,8 +23,6 @@ namespace DataLayer
             FileName = fName+".xml";
         }
 
-
-
         public void Serialize(List<T> list)
         {
             List<T> list2 = list;
@@ -49,9 +47,10 @@ namespace DataLayer
                 }
                 return list;
             }
-            else { return new List<T>(); }
-                
-                
+            else 
+            { 
+                return new List<T>(); 
+            }                          
         }
     }
 }
