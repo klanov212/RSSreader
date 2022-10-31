@@ -33,7 +33,6 @@ namespace Models
 
         }
 
-        //Här används LINQ
         public async Task<List<SyndicationItem>> GetUrlAsync(string url)
         {
             return await Task.Run(() =>
@@ -54,11 +53,11 @@ namespace Models
             {
                 Episodes episode = new Episodes();
                 episode.Title = item.Title.Text;
+                episode.PubDate = item.PublishDate.ToString().Substring(0, 19);
                 episode.Description = item.Summary.Text;
                 
                 episodes.Add(episode);
             }
-           
             return episodes;
         }
 

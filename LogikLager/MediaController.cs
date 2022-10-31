@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ServiceModel.Syndication;
+using System.Xml.Linq;
 
 namespace LogicLayer
 {
@@ -43,6 +44,21 @@ namespace LogicLayer
         public Media GetMediaById(int index)
         {
             return mediaRepository.GetByID(index);
+        }
+        public async void UpdateUrl()
+        {
+            foreach(Media media in mediaRepository.GetAll())
+            {
+                Task<List<SyndicationItem>> GetUrlData = media.GetUrlAsync(media.Url);
+                List<SyndicationItem> feedList = await GetUrlData;
+                if (!feedList.Equals(media.AllEpisodes)) 
+                {
+                    media.AllEpisodes = media.SetEpisodes(feedList);
+                    media.NumberOfEpisodes = media.AllEpisodes.Count();
+                    mediaRepository.SaveChanges();
+                }
+                
+            }
         }
     }
 }
