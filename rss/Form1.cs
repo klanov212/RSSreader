@@ -40,6 +40,7 @@ namespace PresentationLayer
                 lstBoxKategori.Items.Add(category.Name);
             }
         }
+        //Metod för att fylla kategori-comboboxen
         private void PopulateComboBoxCategory()
         {
             comboBoxKategori.Items.Clear();
@@ -49,7 +50,7 @@ namespace PresentationLayer
                 comboBoxKategori.Items.Add(category.Name);
             }
         }
-
+        //Metod för att fylla Viewfeeden med alla media-objekt
         private void PopulateViewFeed()
         {
             try
@@ -66,6 +67,7 @@ namespace PresentationLayer
             catch (DirectoryNotFoundException) { }
             catch (Exception) { }
         }
+        //Metod för att fylla listboxen med varje episode-title
         private void PopulatelstBoxAvsnitt()
         {
             lstBoxAvsnitt.Items.Clear();
@@ -79,6 +81,7 @@ namespace PresentationLayer
                 }
             }
         }
+        //Metod för att fylla listboxen med varje episode-description
         private void PopulatetxtBoxBeskrivning()
         {
             txtBoxBeskrivning.Clear();
@@ -91,7 +94,7 @@ namespace PresentationLayer
             }
 
         }
-        //Lägger till ny kategori men ej dublett-värden
+        //Lägger till ny kategori
         private void btnNyKategori_Click(object sender, EventArgs e)
         {
             try
@@ -123,8 +126,8 @@ namespace PresentationLayer
                      List<Media> medialist = mediaController.RetrieveAllMedia();
                      for (int i = 0; i < medialist.Count; i++)
             {
-                     Media? media = medialist[i];
-                     if (media.Category.Name.Equals(lstBoxKategori.SelectedItem))
+                Media? media = medialist[i];
+                if (media.Category.Equals(lstBoxKategori.SelectedItem))
                 {
                     mediaController.DeleteMedia(i);
                 }
@@ -281,6 +284,8 @@ namespace PresentationLayer
         private void lstViewFeed_SelectedIndexChanged(object sender, EventArgs e)
         {
             PopulatelstBoxAvsnitt();
+            Media media = mediaController.GetMediaById(lstViewFeed.FocusedItem.Index);
+            txtBoxURL.Text = media.Url;
         }
         //Kallar på metoden som populerar beskrivningsrutan när man klickar på ett specifikt avsnitt i avsnitslistan
         private void lstBoxAvsnitt_SelectedIndexChanged(object sender, EventArgs e)
