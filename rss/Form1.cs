@@ -100,11 +100,13 @@ namespace PresentationLayer
             List<Media> medialist = mediaController.RetrieveAllMedia();
             for (int i = 0; i < medialist.Count; i++)
             {
-                Media? media = medialist[i];
-                if (media.Category.Equals(lstBoxKategori.SelectedItem))
+                Media media = medialist[i];
+                if (media.Category.Name.Equals(lstBoxKategori.SelectedItem))
                 {
                     mediaController.DeleteMedia(i);
+                    i--;
                 }
+                medialist = mediaController.RetrieveAllMedia();
             }
             categoryController.DeleteCategory(lstBoxKategori.SelectedIndex);
             PopulateViewFeed();
