@@ -164,6 +164,7 @@ namespace PresentationLayer
             txtBoxNamn.Clear();
             comboBoxFrekvens.Text = "Uppspelningsfrekvens";
             comboBoxKategori.Text = "Välj kategori";
+            MessageBox.Show("Din feed har lagts till!", "" , MessageBoxButtons.OK);
             PopulateViewFeed();
         }
         //Ändrar media-objekt i listView
