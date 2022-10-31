@@ -46,5 +46,14 @@ namespace PresentationLayer
                 throw new Exception();
             }
         }
+
+        public void CheckEmpyCategoryField(TextBox tb)
+        {
+            if (tb.Text.Equals(""))
+            {
+                MessageBox.Show("Vänligen fyll i ett kategorinamn");
+                throw new Exception();
+            }
+        }
     }
 }

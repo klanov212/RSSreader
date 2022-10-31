@@ -88,83 +88,127 @@ namespace PresentationLayer
         //Lägger till ny kategori men ej dublett-värden
         private void btnNyKategori_Click(object sender, EventArgs e)
         {
-            validation.CheckDuplicate(txtBoxKategori, )
-            categoryController.CreateCategory(txtBoxKategori.Text);
-            txtBoxKategori.Clear();
-            PopulateCategoryListBox();
-            PopulateComboBoxCategory();        
+            try
+            {
+                validation.CheckEmpyCategoryField(txtBoxKategori);
+                foreach (Category category in categoryController.RetrieveAllCategorys())
+                {
+                    validation.CheckDuplicate(txtBoxKategori, category.Name);
+
+                }
+                categoryController.CreateCategory(txtBoxKategori.Text);
+                txtBoxKategori.Clear();
+                PopulateCategoryListBox();
+                PopulateComboBoxCategory();
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
         //Tar bort markerad kategori och tillhörande feeds
         private void btnTaBortKategori_Click(object sender, EventArgs e)
         {
-            List<Media> medialist = mediaController.RetrieveAllMedia();
-            for (int i = 0; i < medialist.Count; i++)
+            DialogResult dialog = MessageBox.Show("Du håller nu på att ta bort kategorin " + lstBoxKategori.SelectedItem +
+                " och dess tillhörande feed", "", MessageBoxButtons.OKCancel);
+
+            switch (dialog)
             {
-                Media? media = medialist[i];
-                if (media.Category.Name.Equals(lstBoxKategori.SelectedItem))
+                case DialogResult.OK:
+
+                     List<Media> medialist = mediaController.RetrieveAllMedia();
+                     for (int i = 0; i < medialist.Count; i++)
+            {
+                     Media? media = medialist[i];
+                     if (media.Category.Name.Equals(lstBoxKategori.SelectedItem))
                 {
                     mediaController.DeleteMedia(i);
                 }
             }
-            categoryController.DeleteCategory(lstBoxKategori.SelectedIndex);
-            PopulateViewFeed();
-            lstBoxAvsnitt.Items.Clear();
-            txtBoxBeskrivning.Clear();
-            PopulateCategoryListBox();
-            PopulateComboBoxCategory();
+                        categoryController.DeleteCategory(lstBoxKategori.SelectedIndex);
+                        PopulateViewFeed();
+                        lstBoxAvsnitt.Items.Clear();
+                        txtBoxBeskrivning.Clear();
+                        PopulateCategoryListBox();
+                        PopulateComboBoxCategory();
+                    break;
+
+                case DialogResult.Cancel: 
+                    break;
+                default:
+                    break;
+            }
+
+           
         }
         //Ändrar namn på markerad kategori och de feeds som har samma kategorinamn
         private void btnAndraKategori_Click(object sender, EventArgs e)
         {
-            Category category;
-            category = categoryController.UpdateCategory(lstBoxKategori.SelectedIndex, txtBoxKategori.Text);
-            List<Media> medialist = mediaController.RetrieveAllMedia();
-            for (int i = 0; i < medialist.Count; i++)
+            try
             {
-                Media? media = medialist[i];
-                if (media.Category.Name.Equals(lstBoxKategori.SelectedItem))
+                validation.CheckEmpyCategoryField(txtBoxKategori);
+                Category category;
+                category = categoryController.UpdateCategory(lstBoxKategori.SelectedIndex, txtBoxKategori.Text);
+                List<Media> medialist = mediaController.RetrieveAllMedia();
+                for (int i = 0; i < medialist.Count; i++)
                 {
-                    
-                    mediaController.UpdateMedia(i, media.Name, category, media.Frequency, media.Url);
-                }
-            }          
-            PopulateViewFeed();
-            PopulateCategoryListBox();
-            PopulateComboBoxCategory();
-            txtBoxKategori.Clear();
+                    Media? media = medialist[i];
+                    if (media.Category.Name.Equals(lstBoxKategori.SelectedItem))
+                    {
 
+                        mediaController.UpdateMedia(i, media.Name, category, media.Frequency, media.Url);
+                    }
+                }
+                PopulateViewFeed();
+                PopulateCategoryListBox();
+                PopulateComboBoxCategory();
+                txtBoxKategori.Clear();
+            }
+            catch (Exception)
+            {
+
+            }
         }
         //Lägger till nya media-objekt i listView
         private void btnNyFeed_Click(object sender, EventArgs e)
         {
-            int index = comboBoxKategori.SelectedIndex;
-            Category theCategory = categoryController.RetrieveAllCategorys()[index];
-            
-            if (comboBoxFrekvens.SelectedItem.Equals("10 sek"))
+            try
             {
-                Frequency theFrequency = new _10sec();
-                mediaController.CreateMedia(txtBoxNamn.Text ,theCategory, theFrequency, txtBoxURL.Text);
-                
-            }
-            else if (comboBoxFrekvens.SelectedItem.Equals("30 sek"))
-            {
-                Frequency theFrequency = new _30sec();
-                mediaController.CreateMedia(txtBoxNamn.Text, theCategory, theFrequency, txtBoxURL.Text);
-                
-            }
-            else if (comboBoxFrekvens.SelectedItem.Equals("1 min"))
-            {
-                Frequency theFrequency = new _1min();
-                mediaController.CreateMedia(txtBoxNamn.Text, theCategory, theFrequency, txtBoxURL.Text);
-                
-            }
+                validation.CheckEmptyFields(txtBoxURL, comboBoxFrekvens, comboBoxKategori, txtBoxNamn);
+                int index = comboBoxKategori.SelectedIndex;
+                Category theCategory = categoryController.RetrieveAllCategorys()[index];
 
-            txtBoxURL.Clear();
-            txtBoxNamn.Clear();
-            comboBoxFrekvens.Text = "Uppspelningsfrekvens";
-            comboBoxKategori.Text = "Välj kategori";
-            PopulateViewFeed();
+                if (comboBoxFrekvens.SelectedItem.Equals("10 sek"))
+                {
+                    Frequency theFrequency = new _10sec();
+                    mediaController.CreateMedia(txtBoxNamn.Text, theCategory, theFrequency, txtBoxURL.Text);
+
+                }
+                else if (comboBoxFrekvens.SelectedItem.Equals("30 sek"))
+                {
+                    Frequency theFrequency = new _30sec();
+                    mediaController.CreateMedia(txtBoxNamn.Text, theCategory, theFrequency, txtBoxURL.Text);
+
+                }
+                else if (comboBoxFrekvens.SelectedItem.Equals("1 min"))
+                {
+                    Frequency theFrequency = new _1min();
+                    mediaController.CreateMedia(txtBoxNamn.Text, theCategory, theFrequency, txtBoxURL.Text);
+
+                }
+
+                txtBoxURL.Clear();
+                txtBoxNamn.Clear();
+                comboBoxFrekvens.Text = "Uppspelningsfrekvens";
+                comboBoxKategori.Text = "Välj kategori";
+                PopulateViewFeed();
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
+
         //Ändrar media-objekt i listView
         private void btnAndraFeed_Click(object sender, EventArgs e)
         {
@@ -195,10 +239,24 @@ namespace PresentationLayer
         //Tar bort media-objekt från listView
         private void btnTaBortFeed_Click(object sender, EventArgs e)
         {
-            mediaController.DeleteMedia(lstViewFeed.SelectedIndices[0]);
-            PopulateViewFeed();
-            lstBoxAvsnitt.Items.Clear();
-            txtBoxBeskrivning.Clear();
+            DialogResult dialog = MessageBox.Show("Du håller nu på att ta bort ett feed", "", MessageBoxButtons.OKCancel);
+
+            switch (dialog)
+            {
+                case DialogResult.OK:
+                    mediaController.DeleteMedia(lstViewFeed.SelectedIndices[0]);
+                    PopulateViewFeed();
+                    lstBoxAvsnitt.Items.Clear();
+                    txtBoxBeskrivning.Clear();
+                    break;
+
+                case DialogResult.Cancel:
+                    break;
+
+                default:
+                    break;
+            }
+            
         }
         //Kallar på metoden som populerar avsnittslistan när man klickar på ett spesifikt feed i ViewFeed-listan
         private void lstViewFeed_SelectedIndexChanged(object sender, EventArgs e)
