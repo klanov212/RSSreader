@@ -67,5 +67,15 @@ namespace PresentationLayer
                 throw new FormatException();
             }
         }
+
+        public void CheckItemSelected(ListView lst)
+        {
+            if(lst.SelectedIndices.Equals(0)) 
+            {
+                MessageBox.Show("Vänligen ange en giltig URL");
+                throw new Exception();
+            }
+        }
+
     }
 }

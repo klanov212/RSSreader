@@ -228,29 +228,34 @@ namespace PresentationLayer
         //Ändrar media-objekt i listView
         private void btnAndraFeed_Click(object sender, EventArgs e)
         {
-            int index = comboBoxKategori.SelectedIndex;
-            Category theCategory = categoryController.RetrieveAllCategorys()[index];
+            try
+            {
+                
+                int index = comboBoxKategori.SelectedIndex;
+                Category theCategory = categoryController.RetrieveAllCategorys()[index];
 
-            if (comboBoxFrekvens.SelectedItem.Equals("10 sek"))
-            {               
-                _10sec theFrequency = new _10sec();
-                mediaController.UpdateMedia(lstViewFeed.SelectedIndices[0], txtBoxNamn.Text, theCategory, theFrequency, txtBoxURL.Text);
+                if (comboBoxFrekvens.SelectedItem.Equals("10 sek"))
+                {
+                    _10sec theFrequency = new _10sec();
+                    mediaController.UpdateMedia(lstViewFeed.SelectedIndices[0], txtBoxNamn.Text, theCategory, theFrequency, txtBoxURL.Text);
+                }
+                else if (comboBoxFrekvens.SelectedItem.Equals("30 sek"))
+                {
+                    _30sec theFrequency = new _30sec();
+                    mediaController.UpdateMedia(lstViewFeed.SelectedIndices[0], txtBoxNamn.Text, theCategory, theFrequency, txtBoxURL.Text);
+                }
+                else if (comboBoxFrekvens.SelectedItem.Equals("1 min"))
+                {
+                    _1min theFrequency = new _1min();
+                    mediaController.UpdateMedia(lstViewFeed.SelectedIndices[0], txtBoxNamn.Text, theCategory, theFrequency, txtBoxURL.Text);
+                }
+                PopulateViewFeed();
+                comboBoxFrekvens.Text = "Uppspelningsfrekvens";
+                comboBoxKategori.Text = "Välj kategori";
+                txtBoxURL.Clear();
+                txtBoxNamn.Clear();
             }
-            else if (comboBoxFrekvens.SelectedItem.Equals("30 sek"))
-            {
-                _30sec theFrequency = new _30sec();
-                mediaController.UpdateMedia(lstViewFeed.SelectedIndices[0], txtBoxNamn.Text, theCategory, theFrequency, txtBoxURL.Text);
-            }
-            else if (comboBoxFrekvens.SelectedItem.Equals("1 min"))
-            {
-                _1min theFrequency = new _1min();
-                mediaController.UpdateMedia(lstViewFeed.SelectedIndices[0], txtBoxNamn.Text, theCategory, theFrequency, txtBoxURL.Text);
-            }
-            PopulateViewFeed();
-            comboBoxFrekvens.Text = "Uppspelningsfrekvens";
-            comboBoxKategori.Text = "Välj kategori";
-            txtBoxURL.Clear();
-            txtBoxNamn.Clear();
+            catch(Exception) { }
         }
         //Tar bort media-objekt från listView
         private void btnTaBortFeed_Click(object sender, EventArgs e)
