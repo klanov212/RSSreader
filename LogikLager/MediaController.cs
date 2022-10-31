@@ -51,9 +51,13 @@ namespace LogicLayer
             {
                 Task<List<SyndicationItem>> GetUrlData = media.GetUrlAsync(media.Url);
                 List<SyndicationItem> feedList = await GetUrlData;
-                media.AllEpisodes = media.SetEpisodes(feedList);
-                media.NumberOfEpisodes = media.AllEpisodes.Count();
-                mediaRepository.SaveChanges();
+                if (!feedList.Equals(media.AllEpisodes)) 
+                {
+                    media.AllEpisodes = media.SetEpisodes(feedList);
+                    media.NumberOfEpisodes = media.AllEpisodes.Count();
+                    mediaRepository.SaveChanges();
+                }
+                
             }
         }
     }

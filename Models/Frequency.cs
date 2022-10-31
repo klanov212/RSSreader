@@ -21,6 +21,12 @@ namespace Models
         {
             Update();
         }
+
+        public string Update()
+        {
+            NextUpdate = DateTime.Now.AddMilliseconds(UpdateTime);
+            return "'s Update() was invoked. Next update is at " + NextUpdate;
+        }
         public bool NeedsUpdate
         {
             get
@@ -28,10 +34,6 @@ namespace Models
                 return NextUpdate <= DateTime.Now;
             }
         }
-        public string Update()
-        {
-            NextUpdate = DateTime.Now.AddMilliseconds(UpdateTime);
-            return "'s Update() was invoked. Next update is at " + NextUpdate;
-        }
+       
     }
 }

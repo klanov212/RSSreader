@@ -23,7 +23,7 @@ namespace PresentationLayer
             categoryController = new CategoryController();
 
             // kör timer 1 gång per sekund
-            timer.Interval = 10000;
+            timer.Interval = 1000;
             // Koppla event handler Timer_Tick() som ska köras varje gång timern körs dvs varje sekund
             // Tick är en event i klassen Timer som använder en inbyggd delegat EventHandler(object sender, EventArgs e); 
             timer.Tick += Timer_Tick;
@@ -85,6 +85,7 @@ namespace PresentationLayer
         private void PopulatelstBoxAvsnitt()
         {
             lstBoxAvsnitt.Items.Clear();
+            txtBoxBeskrivning.Clear();
             Media media = mediaController.GetMediaById(lstViewFeed.FocusedItem.Index);
             
             {
@@ -219,11 +220,15 @@ namespace PresentationLayer
         //Kallar på metoden som populerar avsnittslistan när man klickar på ett spesifikt feed i ViewFeed-listan
         private void lstViewFeed_SelectedIndexChanged(object sender, EventArgs e)
         {
+            lblPodcastBeskrivning.Text = "Podcasts: Avsnitt";
+            lblAvsinttsBeskrivning.Text = "Avsnitt";
             PopulatelstBoxAvsnitt();
         }
         //Kallar på metoden som populerar beskrivningsrutan när man klickar på ett specifikt avsnitt i avsnitslistan
         private void lstBoxAvsnitt_SelectedIndexChanged(object sender, EventArgs e)
         {
+            lblPodcastBeskrivning.Text = "Podcasts: Avsnitt";
+            lblAvsinttsBeskrivning.Text = "Avsnitt";
             PopulatetxtBoxBeskrivning();
         }
 
@@ -231,6 +236,10 @@ namespace PresentationLayer
         private async void lstBoxKategori_SelectedIndexChanged(object sender, EventArgs e)
         {
             lstViewFeed.Items.Clear();
+            lstBoxAvsnitt.Items.Clear();
+            txtBoxBeskrivning.Clear();
+            lblPodcastBeskrivning.Text = "Podcasts: Avsnitt";
+            lblAvsinttsBeskrivning.Text = "Avsnitt";
             List<Media> medialist = mediaController.RetrieveAllMedia();
             foreach (var media in medialist)
             {
@@ -245,6 +254,10 @@ namespace PresentationLayer
         }
         private void btnAllaKategorier_Click(object sender, EventArgs e)
         {
+            lstBoxAvsnitt.Items.Clear();
+            txtBoxBeskrivning.Clear();
+            lblPodcastBeskrivning.Text = "Podcasts: Avsnitt";
+            lblAvsinttsBeskrivning.Text = "Avsnitt";
             PopulateViewFeed();
         }
     }
