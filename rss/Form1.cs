@@ -13,12 +13,14 @@ namespace PresentationLayer
     {
         MediaController mediaController;
         CategoryController categoryController;
+        Validation validation;
         //FrequencyController frequencyController;
         public Form1()
         {
             InitializeComponent();
             mediaController = new MediaController();
             categoryController = new CategoryController();
+            validation = new Validation();
             //frequencyController = new FrequencyController();
         }
         //Fyller alla fällt i formen när man kör programmet
@@ -86,6 +88,7 @@ namespace PresentationLayer
         //Lägger till ny kategori men ej dublett-värden
         private void btnNyKategori_Click(object sender, EventArgs e)
         {
+            validation.CheckDuplicate(txtBoxKategori, )
             categoryController.CreateCategory(txtBoxKategori.Text);
             txtBoxKategori.Clear();
             PopulateCategoryListBox();
