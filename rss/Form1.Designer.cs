@@ -94,9 +94,9 @@
             // 
             this.lstBoxKategori.FormattingEnabled = true;
             this.lstBoxKategori.ItemHeight = 25;
-            this.lstBoxKategori.Location = new System.Drawing.Point(703, 75);
+            this.lstBoxKategori.Location = new System.Drawing.Point(703, 33);
             this.lstBoxKategori.Name = "lstBoxKategori";
-            this.lstBoxKategori.Size = new System.Drawing.Size(385, 204);
+            this.lstBoxKategori.Size = new System.Drawing.Size(385, 304);
             this.lstBoxKategori.TabIndex = 3;
             this.lstBoxKategori.SelectedIndexChanged += new System.EventHandler(this.lstBoxKategori_SelectedIndexChanged);
             // 
@@ -109,7 +109,7 @@
             this.columnKategori});
             this.lstViewFeed.FullRowSelect = true;
             this.lstViewFeed.GridLines = true;
-            this.lstViewFeed.Location = new System.Drawing.Point(32, 75);
+            this.lstViewFeed.Location = new System.Drawing.Point(32, 33);
             this.lstViewFeed.Name = "lstViewFeed";
             this.lstViewFeed.Size = new System.Drawing.Size(624, 204);
             this.lstViewFeed.TabIndex = 4;
@@ -253,7 +253,7 @@
             // 
             this.lblKategorier.AutoSize = true;
             this.lblKategorier.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblKategorier.Location = new System.Drawing.Point(699, 47);
+            this.lblKategorier.Location = new System.Drawing.Point(699, 5);
             this.lblKategorier.Name = "lblKategorier";
             this.lblKategorier.Size = new System.Drawing.Size(108, 25);
             this.lblKategorier.TabIndex = 16;
@@ -309,7 +309,7 @@
             // 
             this.lblFeed.AutoSize = true;
             this.lblFeed.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblFeed.Location = new System.Drawing.Point(32, 47);
+            this.lblFeed.Location = new System.Drawing.Point(32, 5);
             this.lblFeed.Name = "lblFeed";
             this.lblFeed.Size = new System.Drawing.Size(57, 25);
             this.lblFeed.TabIndex = 23;
@@ -318,11 +318,11 @@
             // btnAllaKategorier
             // 
             this.btnAllaKategorier.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnAllaKategorier.Location = new System.Drawing.Point(768, 324);
+            this.btnAllaKategorier.Location = new System.Drawing.Point(203, 243);
             this.btnAllaKategorier.Name = "btnAllaKategorier";
             this.btnAllaKategorier.Size = new System.Drawing.Size(258, 34);
             this.btnAllaKategorier.TabIndex = 24;
-            this.btnAllaKategorier.Text = "Se alla feeds";
+            this.btnAllaKategorier.Text = "Uppdatera feedlistan";
             this.btnAllaKategorier.UseVisualStyleBackColor = true;
             this.btnAllaKategorier.Click += new System.EventHandler(this.btnAllaKategorier_Click);
             // 

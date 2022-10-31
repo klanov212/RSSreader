@@ -38,6 +38,7 @@ namespace PresentationLayer
                 lstBoxKategori.Items.Add(category.Name);
             }
         }
+        //Metod för att fylla kategori-comboboxen
         private void PopulateComboBoxCategory()
         {
             comboBoxKategori.Items.Clear();
@@ -47,7 +48,7 @@ namespace PresentationLayer
                 comboBoxKategori.Items.Add(category.Name);
             }
         }
-
+        //Metod för att fylla Viewfeeden med alla media-objekt
         private void PopulateViewFeed()
         {
             lstViewFeed.Items.Clear();
@@ -58,6 +59,7 @@ namespace PresentationLayer
                 lstViewFeed.Items.Add(media.NumberOfEpisodes.ToString()).SubItems.AddRange(row1);
             }
         }
+        //Metod för att fylla listboxen med varje episode-title
         private void PopulatelstBoxAvsnitt()
         {
             lstBoxAvsnitt.Items.Clear();
@@ -71,6 +73,7 @@ namespace PresentationLayer
                 }
             }
         }
+        //Metod för att fylla listboxen med varje episode-description
         private void PopulatetxtBoxBeskrivning()
         {
             txtBoxBeskrivning.Clear();
@@ -83,7 +86,7 @@ namespace PresentationLayer
             }
 
         }
-        //Lägger till ny kategori men ej dublett-värden
+        //Lägger till ny kategori
         private void btnNyKategori_Click(object sender, EventArgs e)
         {
             categoryController.CreateCategory(txtBoxKategori.Text);
@@ -98,7 +101,7 @@ namespace PresentationLayer
             for (int i = 0; i < medialist.Count; i++)
             {
                 Media? media = medialist[i];
-                if (media.Category.Name.Equals(lstBoxKategori.SelectedItem))
+                if (media.Category.Equals(lstBoxKategori.SelectedItem))
                 {
                     mediaController.DeleteMedia(i);
                 }
@@ -155,7 +158,6 @@ namespace PresentationLayer
                 mediaController.CreateMedia(txtBoxNamn.Text, theCategory, theFrequency, txtBoxURL.Text);
                 
             }
-
             txtBoxURL.Clear();
             txtBoxNamn.Clear();
             comboBoxFrekvens.Text = "Uppspelningsfrekvens";
@@ -201,6 +203,8 @@ namespace PresentationLayer
         private void lstViewFeed_SelectedIndexChanged(object sender, EventArgs e)
         {
             PopulatelstBoxAvsnitt();
+            Media media = mediaController.GetMediaById(lstViewFeed.FocusedItem.Index);
+            txtBoxURL.Text = media.Url;
         }
         //Kallar på metoden som populerar beskrivningsrutan när man klickar på ett specifikt avsnitt i avsnitslistan
         private void lstBoxAvsnitt_SelectedIndexChanged(object sender, EventArgs e)
@@ -213,17 +217,15 @@ namespace PresentationLayer
         {
             lstViewFeed.Items.Clear();
             List<Media> medialist = mediaController.RetrieveAllMedia();
-            foreach (var media in medialist)
+            foreach (var media in medialist.Where(media => media.Category.Name.Equals(lstBoxKategori.SelectedItem)))
             {
-                if (media.Category.Name.Equals(lstBoxKategori.SelectedItem))
-                {
-                    Task GetUrlData = media.GetUrlAsync(media.Url);
-                    await GetUrlData;
-                    string[] row1 = { media.Name, media.Frequency.GetType().ToString().Substring(8), media.Category.Name };
-                    lstViewFeed.Items.Add(media.NumberOfEpisodes.ToString()).SubItems.AddRange(row1);
-                }               
-            }           
+                Task GetUrlData = media.GetUrlAsync(media.Url);
+                await GetUrlData;
+                string[] row1 = { media.Name, media.Frequency.GetType().ToString().Substring(8), media.Category.Name };
+                lstViewFeed.Items.Add(media.NumberOfEpisodes.ToString()).SubItems.AddRange(row1);
+            }
         }
+        //Visar alla kategorier när man klickar på "Updatera feedlistan"-knappen.
         private void btnAllaKategorier_Click(object sender, EventArgs e)
         {
             PopulateViewFeed();
