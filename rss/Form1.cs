@@ -23,17 +23,8 @@ namespace PresentationLayer
             InitializeComponent();
             mediaController = new MediaController();
             categoryController = new CategoryController();
-
-            // kör timer 1 gång per sekund
-            timer.Interval = 1000;
-            // Koppla event handler Timer_Tick() som ska köras varje gång timern körs dvs varje sekund
-            // Tick är en event i klassen Timer som använder en inbyggd delegat EventHandler(object sender, EventArgs e); 
-            timer.Tick += Timer_Tick;
-            // starta timer
-            timer.Start();
-
             validation = new Validation();
-            //frequencyController = new FrequencyController();
+            
         }
         //Fyller alla fällt i formen när man kör programmet
         private void Form1_Load(object sender, EventArgs e)
@@ -43,19 +34,6 @@ namespace PresentationLayer
             PopulateViewFeed();
         }
 
-        private void Timer_Tick(object sender, EventArgs e)
-        {          
-            //Detta funkar inte
-            
-            foreach (Media media in mediaController.RetrieveAllMedia())
-            {
-                if (media.Frequency.NeedsUpdate)
-                {                 
-                    mediaController.UpdateUrl();
-                    media.Frequency.Update();
-                }
-            }  
-        }
         //Metod för att fylla kategori-listboxen med kategorier från xml-filen
         private void PopulateCategoryListBox()
         {
