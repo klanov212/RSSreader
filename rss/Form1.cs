@@ -52,13 +52,19 @@ namespace PresentationLayer
 
         private void PopulateViewFeed()
         {
-            lstViewFeed.Items.Clear();
-            for (int i = 0; i < mediaController.RetrieveAllMedia().Count; i++)
+            try
             {
-                Media media = mediaController.RetrieveAllMedia()[i];
-                string[] row1 = { media.Name, media.Frequency.GetType().ToString().Substring(8), media.Category.Name };
-                lstViewFeed.Items.Add(media.NumberOfEpisodes.ToString()).SubItems.AddRange(row1);
+                lstViewFeed.Items.Clear();
+                for (int i = 0; i < mediaController.RetrieveAllMedia().Count; i++)
+                {
+                    Media media = mediaController.RetrieveAllMedia()[i];
+                    string[] row1 = { media.Name, media.Frequency.GetType().ToString().Substring(8), media.Category.Name };
+                    lstViewFeed.Items.Add(media.NumberOfEpisodes.ToString()).SubItems.AddRange(row1);
+                }
             }
+            catch (FileNotFoundException) { }
+            catch (DirectoryNotFoundException) { }
+            catch (Exception) { }
         }
         private void PopulatelstBoxAvsnitt()
         {
@@ -101,10 +107,8 @@ namespace PresentationLayer
                 PopulateCategoryListBox();
                 PopulateComboBoxCategory();
             }
-            catch (Exception ex)
-            {
-
-            }
+            catch(EmptyFieldException) { }
+            catch(Exception) { }
         }
         //Tar bort markerad kategori och tillhörande feeds
         private void btnTaBortKategori_Click(object sender, EventArgs e)
@@ -164,10 +168,9 @@ namespace PresentationLayer
                 PopulateComboBoxCategory();
                 txtBoxKategori.Clear();
             }
-            catch (Exception)
-            {
-
-            }
+            catch (FileNotFoundException) { }
+            catch (DirectoryNotFoundException) { }
+            catch (Exception) { }
         }
         //Lägger till nya media-objekt i listView
         private void btnNyFeed_Click(object sender, EventArgs e)
@@ -175,6 +178,8 @@ namespace PresentationLayer
             try
             {
                 validation.CheckEmptyFields(txtBoxURL, comboBoxFrekvens, comboBoxKategori, txtBoxNamn);
+                validation.CheckUrlFormat(txtBoxURL);
+
                 int index = comboBoxKategori.SelectedIndex;
                 Category theCategory = categoryController.RetrieveAllCategorys()[index];
 
@@ -203,10 +208,13 @@ namespace PresentationLayer
                 comboBoxKategori.Text = "Välj kategori";
                 PopulateViewFeed();
             }
-            catch(EmptyFieldException ex)
+            catch(EmptyFieldException)
             {
-          
+                
             }
+            catch(FileNotFoundException) { }
+            catch(DirectoryNotFoundException) { }
+            catch(Exception) { }
         }
 
         //Ändrar media-objekt i listView
@@ -239,24 +247,30 @@ namespace PresentationLayer
         //Tar bort media-objekt från listView
         private void btnTaBortFeed_Click(object sender, EventArgs e)
         {
-            DialogResult dialog = MessageBox.Show("Du håller nu på att ta bort ett feed", "", MessageBoxButtons.OKCancel);
-
-            switch (dialog)
+            try
             {
-                case DialogResult.OK:
-                    mediaController.DeleteMedia(lstViewFeed.SelectedIndices[0]);
-                    PopulateViewFeed();
-                    lstBoxAvsnitt.Items.Clear();
-                    txtBoxBeskrivning.Clear();
-                    break;
+                DialogResult dialog = MessageBox.Show("Du håller nu på att ta bort ett feed", "", MessageBoxButtons.OKCancel);
 
-                case DialogResult.Cancel:
-                    break;
+                switch (dialog)
+                {
+                    case DialogResult.OK:
+                        mediaController.DeleteMedia(lstViewFeed.SelectedIndices[0]);
+                        PopulateViewFeed();
+                        lstBoxAvsnitt.Items.Clear();
+                        txtBoxBeskrivning.Clear();
+                        break;
 
-                default:
-                    break;
+                    case DialogResult.Cancel:
+                        break;
+
+                    default:
+                        break;
+                }
             }
-            
+            catch (FileNotFoundException) { }
+            catch (DirectoryNotFoundException) { }
+            catch (Exception) { }
+
         }
         //Kallar på metoden som populerar avsnittslistan när man klickar på ett spesifikt feed i ViewFeed-listan
         private void lstViewFeed_SelectedIndexChanged(object sender, EventArgs e)
@@ -272,18 +286,24 @@ namespace PresentationLayer
         //Sorterar feedet efter vald kategori
         private async void lstBoxKategori_SelectedIndexChanged(object sender, EventArgs e)
         {
-            lstViewFeed.Items.Clear();
-            List<Media> medialist = mediaController.RetrieveAllMedia();
-            foreach (var media in medialist)
+            try
             {
-                if (media.Category.Name.Equals(lstBoxKategori.SelectedItem))
+                lstViewFeed.Items.Clear();
+                List<Media> medialist = mediaController.RetrieveAllMedia();
+                foreach (var media in medialist)
                 {
-                    Task GetUrlData = media.GetUrlAsync(media.Url);
-                    await GetUrlData;
-                    string[] row1 = { media.Name, media.Frequency.GetType().ToString().Substring(8), media.Category.Name };
-                    lstViewFeed.Items.Add(media.NumberOfEpisodes.ToString()).SubItems.AddRange(row1);
-                }               
-            }           
+                    if (media.Category.Name.Equals(lstBoxKategori.SelectedItem))
+                    {
+                        Task GetUrlData = media.GetUrlAsync(media.Url);
+                        await GetUrlData;
+                        string[] row1 = { media.Name, media.Frequency.GetType().ToString().Substring(8), media.Category.Name };
+                        lstViewFeed.Items.Add(media.NumberOfEpisodes.ToString()).SubItems.AddRange(row1);
+                    }
+                }
+            }
+            catch (FileNotFoundException) { }
+            catch (DirectoryNotFoundException) { }
+            catch (Exception) { }
         }
         private void btnAllaKategorier_Click(object sender, EventArgs e)
         {
