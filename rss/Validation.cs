@@ -13,7 +13,7 @@ namespace PresentationLayer
 
         }
 
-        // Metod som förhindrar dubletter när man lägger till nya kategorier
+        // Metod som förhindrar dubletter för kategorier och feeds
         public void CheckDuplicate(TextBox tb, string str)
         {
             if (tb.Text.Equals(str))
@@ -23,6 +23,7 @@ namespace PresentationLayer
             }
         }
 
+        // Metod som kollar tomma fält när man lägger till feeds
         public void CheckEmptyFields(TextBox tb1, ComboBox cb1, ComboBox cb2, TextBox tb2)
         {
             if (tb1.Text.Equals(""))
@@ -47,7 +48,8 @@ namespace PresentationLayer
             }
         }
 
-        public void CheckEmpyCategoryField(TextBox tb)
+        // Metod som kollar tomt fält när man lägger till ny kategori
+        public void CheckEmpyField(TextBox tb)
         {
             if (tb.Text.Equals(""))
             {
@@ -56,6 +58,7 @@ namespace PresentationLayer
             }
         }
 
+        // Metod som kollar att formatet på URL:er är korrekt
         public void CheckUrlFormat(TextBox tb)
         {
             if(!tb.Text.StartsWith("http") )

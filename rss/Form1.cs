@@ -96,7 +96,7 @@ namespace PresentationLayer
         {
             try
             {
-                validation.CheckEmpyCategoryField(txtBoxKategori);
+                validation.CheckEmpyField(txtBoxKategori);
                 foreach (Category category in categoryController.RetrieveAllCategorys())
                 {
                     validation.CheckDuplicate(txtBoxKategori, category.Name);
@@ -150,7 +150,7 @@ namespace PresentationLayer
         {
             try
             {
-                validation.CheckEmpyCategoryField(txtBoxKategori);
+                validation.CheckEmpyField(txtBoxKategori);
                 Category category;
                 category = categoryController.UpdateCategory(lstBoxKategori.SelectedIndex, txtBoxKategori.Text);
                 List<Media> medialist = mediaController.RetrieveAllMedia();
