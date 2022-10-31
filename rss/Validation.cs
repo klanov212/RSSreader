@@ -18,7 +18,7 @@ namespace PresentationLayer
         {
             if (tb.Text.Equals(str))
             {
-                MessageBox.Show(tb.Text + " finns redan");
+                MessageBox.Show('"' + tb.Text + '"' + " finns redan");
                 throw new Exception();
             }
         }

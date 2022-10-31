@@ -114,7 +114,7 @@ namespace PresentationLayer
         private void btnTaBortKategori_Click(object sender, EventArgs e)
         {
             DialogResult dialog = MessageBox.Show("Du håller nu på att ta bort kategorin " + lstBoxKategori.SelectedItem +
-                " och dess tillhörande feed", "", MessageBoxButtons.OKCancel);
+                " och dess tillhörande feeds", "", MessageBoxButtons.OKCancel);
 
             switch (dialog)
             {
@@ -177,6 +177,11 @@ namespace PresentationLayer
         {
             try
             {
+                foreach (Media media in mediaController.RetrieveAllMedia())
+                {
+                    validation.CheckDuplicate(txtBoxURL, media.Url);
+
+                }
                 validation.CheckEmptyFields(txtBoxURL, comboBoxFrekvens, comboBoxKategori, txtBoxNamn);
                 validation.CheckUrlFormat(txtBoxURL);
 
