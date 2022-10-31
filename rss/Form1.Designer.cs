@@ -61,10 +61,11 @@
             // lstBoxAvsnitt
             // 
             this.lstBoxAvsnitt.FormattingEnabled = true;
-            this.lstBoxAvsnitt.ItemHeight = 25;
-            this.lstBoxAvsnitt.Location = new System.Drawing.Point(32, 493);
+            this.lstBoxAvsnitt.ItemHeight = 20;
+            this.lstBoxAvsnitt.Location = new System.Drawing.Point(26, 394);
+            this.lstBoxAvsnitt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.lstBoxAvsnitt.Name = "lstBoxAvsnitt";
-            this.lstBoxAvsnitt.Size = new System.Drawing.Size(624, 179);
+            this.lstBoxAvsnitt.Size = new System.Drawing.Size(500, 144);
             this.lstBoxAvsnitt.TabIndex = 0;
             this.lstBoxAvsnitt.SelectedIndexChanged += new System.EventHandler(this.lstBoxAvsnitt_SelectedIndexChanged);
             // 
@@ -75,28 +76,31 @@
             "10 sek",
             "30 sek",
             "1 min"});
-            this.comboBoxFrekvens.Location = new System.Drawing.Point(271, 327);
+            this.comboBoxFrekvens.Location = new System.Drawing.Point(217, 262);
+            this.comboBoxFrekvens.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.comboBoxFrekvens.Name = "comboBoxFrekvens";
-            this.comboBoxFrekvens.Size = new System.Drawing.Size(207, 33);
+            this.comboBoxFrekvens.Size = new System.Drawing.Size(166, 28);
             this.comboBoxFrekvens.TabIndex = 1;
             this.comboBoxFrekvens.Text = "Uppdateringsfrekvens";
             // 
             // comboBoxKategori
             // 
             this.comboBoxKategori.FormattingEnabled = true;
-            this.comboBoxKategori.Location = new System.Drawing.Point(495, 327);
+            this.comboBoxKategori.Location = new System.Drawing.Point(396, 262);
+            this.comboBoxKategori.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.comboBoxKategori.Name = "comboBoxKategori";
-            this.comboBoxKategori.Size = new System.Drawing.Size(161, 33);
+            this.comboBoxKategori.Size = new System.Drawing.Size(130, 28);
             this.comboBoxKategori.TabIndex = 2;
             this.comboBoxKategori.Text = "Välj kategori";
             // 
             // lstBoxKategori
             // 
             this.lstBoxKategori.FormattingEnabled = true;
-            this.lstBoxKategori.ItemHeight = 25;
-            this.lstBoxKategori.Location = new System.Drawing.Point(703, 33);
+            this.lstBoxKategori.ItemHeight = 20;
+            this.lstBoxKategori.Location = new System.Drawing.Point(562, 26);
+            this.lstBoxKategori.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.lstBoxKategori.Name = "lstBoxKategori";
-            this.lstBoxKategori.Size = new System.Drawing.Size(385, 304);
+            this.lstBoxKategori.Size = new System.Drawing.Size(309, 204);
             this.lstBoxKategori.TabIndex = 3;
             this.lstBoxKategori.SelectedIndexChanged += new System.EventHandler(this.lstBoxKategori_SelectedIndexChanged);
             // 
@@ -109,9 +113,10 @@
             this.columnKategori});
             this.lstViewFeed.FullRowSelect = true;
             this.lstViewFeed.GridLines = true;
-            this.lstViewFeed.Location = new System.Drawing.Point(32, 33);
+            this.lstViewFeed.Location = new System.Drawing.Point(26, 26);
+            this.lstViewFeed.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.lstViewFeed.Name = "lstViewFeed";
-            this.lstViewFeed.Size = new System.Drawing.Size(624, 204);
+            this.lstViewFeed.Size = new System.Drawing.Size(500, 204);
             this.lstViewFeed.TabIndex = 4;
             this.lstViewFeed.UseCompatibleStateImageBehavior = false;
             this.lstViewFeed.View = System.Windows.Forms.View.Details;
@@ -139,26 +144,29 @@
             // 
             // txtBoxURL
             // 
-            this.txtBoxURL.Location = new System.Drawing.Point(32, 329);
+            this.txtBoxURL.Location = new System.Drawing.Point(26, 263);
+            this.txtBoxURL.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtBoxURL.Name = "txtBoxURL";
             this.txtBoxURL.PlaceholderText = "Klistra in url här";
-            this.txtBoxURL.Size = new System.Drawing.Size(232, 31);
+            this.txtBoxURL.Size = new System.Drawing.Size(186, 27);
             this.txtBoxURL.TabIndex = 5;
             // 
             // txtBoxKategori
             // 
-            this.txtBoxKategori.Location = new System.Drawing.Point(703, 375);
+            this.txtBoxKategori.Location = new System.Drawing.Point(562, 299);
+            this.txtBoxKategori.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtBoxKategori.Name = "txtBoxKategori";
             this.txtBoxKategori.PlaceholderText = "Skriv in den kategori du vill lägga till här";
-            this.txtBoxKategori.Size = new System.Drawing.Size(385, 31);
+            this.txtBoxKategori.Size = new System.Drawing.Size(309, 27);
             this.txtBoxKategori.TabIndex = 6;
             // 
             // btnNyFeed
             // 
             this.btnNyFeed.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnNyFeed.Location = new System.Drawing.Point(271, 412);
+            this.btnNyFeed.Location = new System.Drawing.Point(217, 330);
+            this.btnNyFeed.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnNyFeed.Name = "btnNyFeed";
-            this.btnNyFeed.Size = new System.Drawing.Size(112, 34);
+            this.btnNyFeed.Size = new System.Drawing.Size(90, 27);
             this.btnNyFeed.TabIndex = 7;
             this.btnNyFeed.Text = "Ny...";
             this.btnNyFeed.UseVisualStyleBackColor = true;
@@ -167,9 +175,10 @@
             // btnAndraFeed
             // 
             this.btnAndraFeed.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnAndraFeed.Location = new System.Drawing.Point(408, 412);
+            this.btnAndraFeed.Location = new System.Drawing.Point(326, 330);
+            this.btnAndraFeed.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAndraFeed.Name = "btnAndraFeed";
-            this.btnAndraFeed.Size = new System.Drawing.Size(112, 34);
+            this.btnAndraFeed.Size = new System.Drawing.Size(90, 27);
             this.btnAndraFeed.TabIndex = 8;
             this.btnAndraFeed.Text = "Ändra";
             this.btnAndraFeed.UseVisualStyleBackColor = true;
@@ -178,9 +187,10 @@
             // btnTaBortFeed
             // 
             this.btnTaBortFeed.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnTaBortFeed.Location = new System.Drawing.Point(544, 412);
+            this.btnTaBortFeed.Location = new System.Drawing.Point(435, 330);
+            this.btnTaBortFeed.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnTaBortFeed.Name = "btnTaBortFeed";
-            this.btnTaBortFeed.Size = new System.Drawing.Size(112, 34);
+            this.btnTaBortFeed.Size = new System.Drawing.Size(90, 27);
             this.btnTaBortFeed.TabIndex = 9;
             this.btnTaBortFeed.Text = "Ta bort...";
             this.btnTaBortFeed.UseVisualStyleBackColor = true;
@@ -189,9 +199,10 @@
             // btnTaBortKategori
             // 
             this.btnTaBortKategori.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnTaBortKategori.Location = new System.Drawing.Point(976, 412);
+            this.btnTaBortKategori.Location = new System.Drawing.Point(781, 330);
+            this.btnTaBortKategori.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnTaBortKategori.Name = "btnTaBortKategori";
-            this.btnTaBortKategori.Size = new System.Drawing.Size(112, 34);
+            this.btnTaBortKategori.Size = new System.Drawing.Size(90, 27);
             this.btnTaBortKategori.TabIndex = 12;
             this.btnTaBortKategori.Text = "Ta Bort...";
             this.btnTaBortKategori.UseVisualStyleBackColor = true;
@@ -200,9 +211,10 @@
             // btnAndraKategori
             // 
             this.btnAndraKategori.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnAndraKategori.Location = new System.Drawing.Point(840, 412);
+            this.btnAndraKategori.Location = new System.Drawing.Point(672, 330);
+            this.btnAndraKategori.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAndraKategori.Name = "btnAndraKategori";
-            this.btnAndraKategori.Size = new System.Drawing.Size(112, 34);
+            this.btnAndraKategori.Size = new System.Drawing.Size(90, 27);
             this.btnAndraKategori.TabIndex = 11;
             this.btnAndraKategori.Text = "Ändra";
             this.btnAndraKategori.UseVisualStyleBackColor = true;
@@ -211,9 +223,10 @@
             // btnNyKategori
             // 
             this.btnNyKategori.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnNyKategori.Location = new System.Drawing.Point(703, 412);
+            this.btnNyKategori.Location = new System.Drawing.Point(562, 330);
+            this.btnNyKategori.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnNyKategori.Name = "btnNyKategori";
-            this.btnNyKategori.Size = new System.Drawing.Size(112, 34);
+            this.btnNyKategori.Size = new System.Drawing.Size(90, 27);
             this.btnNyKategori.TabIndex = 10;
             this.btnNyKategori.Text = "Ny...";
             this.btnNyKategori.UseVisualStyleBackColor = true;
@@ -223,9 +236,10 @@
             // 
             this.lblURL.AutoSize = true;
             this.lblURL.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblURL.Location = new System.Drawing.Point(28, 298);
+            this.lblURL.Location = new System.Drawing.Point(22, 238);
+            this.lblURL.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblURL.Name = "lblURL";
-            this.lblURL.Size = new System.Drawing.Size(51, 25);
+            this.lblURL.Size = new System.Drawing.Size(42, 20);
             this.lblURL.TabIndex = 13;
             this.lblURL.Text = "URL:";
             // 
@@ -233,9 +247,10 @@
             // 
             this.lblFrekvens.AutoSize = true;
             this.lblFrekvens.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblFrekvens.Location = new System.Drawing.Point(267, 297);
+            this.lblFrekvens.Location = new System.Drawing.Point(214, 238);
+            this.lblFrekvens.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblFrekvens.Name = "lblFrekvens";
-            this.lblFrekvens.Size = new System.Drawing.Size(205, 25);
+            this.lblFrekvens.Size = new System.Drawing.Size(168, 20);
             this.lblFrekvens.TabIndex = 14;
             this.lblFrekvens.Text = "Uppspelningsfrekvens:";
             // 
@@ -243,9 +258,10 @@
             // 
             this.lblKategori.AutoSize = true;
             this.lblKategori.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblKategori.Location = new System.Drawing.Point(495, 298);
+            this.lblKategori.Location = new System.Drawing.Point(396, 238);
+            this.lblKategori.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblKategori.Name = "lblKategori";
-            this.lblKategori.Size = new System.Drawing.Size(90, 25);
+            this.lblKategori.Size = new System.Drawing.Size(73, 20);
             this.lblKategori.TabIndex = 15;
             this.lblKategori.Text = "Kategori:";
             // 
@@ -253,9 +269,10 @@
             // 
             this.lblKategorier.AutoSize = true;
             this.lblKategorier.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblKategorier.Location = new System.Drawing.Point(699, 5);
+            this.lblKategorier.Location = new System.Drawing.Point(559, 4);
+            this.lblKategorier.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblKategorier.Name = "lblKategorier";
-            this.lblKategorier.Size = new System.Drawing.Size(108, 25);
+            this.lblKategorier.Size = new System.Drawing.Size(88, 20);
             this.lblKategorier.TabIndex = 16;
             this.lblKategorier.Text = "Kategorier:";
             // 
@@ -263,9 +280,10 @@
             // 
             this.lblPodcastBeskrivning.AutoSize = true;
             this.lblPodcastBeskrivning.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblPodcastBeskrivning.Location = new System.Drawing.Point(27, 465);
+            this.lblPodcastBeskrivning.Location = new System.Drawing.Point(22, 372);
+            this.lblPodcastBeskrivning.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPodcastBeskrivning.Name = "lblPodcastBeskrivning";
-            this.lblPodcastBeskrivning.Size = new System.Drawing.Size(186, 25);
+            this.lblPodcastBeskrivning.Size = new System.Drawing.Size(153, 20);
             this.lblPodcastBeskrivning.TabIndex = 17;
             this.lblPodcastBeskrivning.Text = "Podcast #: Avsnitt: #";
             // 
@@ -273,35 +291,39 @@
             // 
             this.lblAvsinttsBeskrivning.AutoSize = true;
             this.lblAvsinttsBeskrivning.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblAvsinttsBeskrivning.Location = new System.Drawing.Point(703, 467);
+            this.lblAvsinttsBeskrivning.Location = new System.Drawing.Point(562, 374);
+            this.lblAvsinttsBeskrivning.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblAvsinttsBeskrivning.Name = "lblAvsinttsBeskrivning";
-            this.lblAvsinttsBeskrivning.Size = new System.Drawing.Size(186, 25);
+            this.lblAvsinttsBeskrivning.Size = new System.Drawing.Size(153, 20);
             this.lblAvsinttsBeskrivning.TabIndex = 19;
             this.lblAvsinttsBeskrivning.Text = "Podcast #: Avsnitt: #";
             // 
             // txtBoxBeskrivning
             // 
-            this.txtBoxBeskrivning.Location = new System.Drawing.Point(703, 493);
+            this.txtBoxBeskrivning.Location = new System.Drawing.Point(562, 394);
+            this.txtBoxBeskrivning.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtBoxBeskrivning.Name = "txtBoxBeskrivning";
-            this.txtBoxBeskrivning.Size = new System.Drawing.Size(385, 179);
+            this.txtBoxBeskrivning.Size = new System.Drawing.Size(309, 144);
             this.txtBoxBeskrivning.TabIndex = 20;
             this.txtBoxBeskrivning.Text = "";
             // 
             // txtBoxNamn
             // 
-            this.txtBoxNamn.Location = new System.Drawing.Point(32, 415);
+            this.txtBoxNamn.Location = new System.Drawing.Point(26, 332);
+            this.txtBoxNamn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtBoxNamn.Name = "txtBoxNamn";
             this.txtBoxNamn.PlaceholderText = "Skriv in namn här";
-            this.txtBoxNamn.Size = new System.Drawing.Size(232, 31);
+            this.txtBoxNamn.Size = new System.Drawing.Size(186, 27);
             this.txtBoxNamn.TabIndex = 21;
             // 
             // lblNamn
             // 
             this.lblNamn.AutoSize = true;
             this.lblNamn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblNamn.Location = new System.Drawing.Point(32, 391);
+            this.lblNamn.Location = new System.Drawing.Point(22, 307);
+            this.lblNamn.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblNamn.Name = "lblNamn";
-            this.lblNamn.Size = new System.Drawing.Size(68, 25);
+            this.lblNamn.Size = new System.Drawing.Size(56, 20);
             this.lblNamn.TabIndex = 22;
             this.lblNamn.Text = "Namn:";
             // 
@@ -309,29 +331,31 @@
             // 
             this.lblFeed.AutoSize = true;
             this.lblFeed.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblFeed.Location = new System.Drawing.Point(32, 5);
+            this.lblFeed.Location = new System.Drawing.Point(26, 4);
+            this.lblFeed.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblFeed.Name = "lblFeed";
-            this.lblFeed.Size = new System.Drawing.Size(57, 25);
+            this.lblFeed.Size = new System.Drawing.Size(46, 20);
             this.lblFeed.TabIndex = 23;
             this.lblFeed.Text = "Feed:";
             // 
             // btnAllaKategorier
             // 
             this.btnAllaKategorier.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnAllaKategorier.Location = new System.Drawing.Point(203, 243);
+            this.btnAllaKategorier.Location = new System.Drawing.Point(614, 238);
+            this.btnAllaKategorier.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAllaKategorier.Name = "btnAllaKategorier";
-            this.btnAllaKategorier.Size = new System.Drawing.Size(258, 34);
+            this.btnAllaKategorier.Size = new System.Drawing.Size(206, 27);
             this.btnAllaKategorier.TabIndex = 24;
-            this.btnAllaKategorier.Text = "Uppdatera feedlistan";
+            this.btnAllaKategorier.Text = "Se alla kategorier";
             this.btnAllaKategorier.UseVisualStyleBackColor = true;
             this.btnAllaKategorier.Click += new System.EventHandler(this.btnAllaKategorier_Click);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.ClientSize = new System.Drawing.Size(1100, 690);
+            this.ClientSize = new System.Drawing.Size(880, 552);
             this.Controls.Add(this.btnAllaKategorier);
             this.Controls.Add(this.lblFeed);
             this.Controls.Add(this.lblNamn);
@@ -356,6 +380,7 @@
             this.Controls.Add(this.comboBoxKategori);
             this.Controls.Add(this.comboBoxFrekvens);
             this.Controls.Add(this.lstBoxAvsnitt);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form1";
             this.Text = "RSS-reader";
             this.Load += new System.EventHandler(this.Form1_Load);
