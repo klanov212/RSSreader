@@ -30,7 +30,6 @@ namespace DataLayer
             {
                 category = item;
             }
-
             return category;
         }
         public void Insert(Category theObject) 
