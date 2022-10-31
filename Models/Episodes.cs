@@ -10,11 +10,12 @@ namespace Models
     {
         public string Title { get; set; }
         public string Description { get; set; }
-        public Episodes(string title, string description)
-        {
-            Title = title;
-            Description = description;
-        }
+        public string PubDate { get; set; } 
+        //public Episodes(string title, string description)
+        //{
+        //    Title = title;
+        //    Description = description;
+        //}
         public Episodes()
         {
 

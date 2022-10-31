@@ -6,6 +6,8 @@ using System.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.ServiceModel.Syndication;
 using Octokit;
+using Timer = System.Windows.Forms.Timer;
+using System.Reflection;
 
 namespace PresentationLayer
 {
@@ -13,6 +15,7 @@ namespace PresentationLayer
     {
         MediaController mediaController;
         CategoryController categoryController;
+        private Timer timer= new Timer();
         Validation validation;
         //FrequencyController frequencyController;
         public Form1()
@@ -20,6 +23,15 @@ namespace PresentationLayer
             InitializeComponent();
             mediaController = new MediaController();
             categoryController = new CategoryController();
+
+            // kör timer 1 gång per sekund
+            timer.Interval = 1000;
+            // Koppla event handler Timer_Tick() som ska köras varje gång timern körs dvs varje sekund
+            // Tick är en event i klassen Timer som använder en inbyggd delegat EventHandler(object sender, EventArgs e); 
+            timer.Tick += Timer_Tick;
+            // starta timer
+            timer.Start();
+
             validation = new Validation();
             //frequencyController = new FrequencyController();
         }
@@ -29,6 +41,20 @@ namespace PresentationLayer
             PopulateCategoryListBox();
             PopulateComboBoxCategory();
             PopulateViewFeed();
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {          
+            //Detta funkar inte
+            
+            foreach (Media media in mediaController.RetrieveAllMedia())
+            {
+                if (media.Frequency.NeedsUpdate)
+                {                 
+                    mediaController.UpdateUrl();
+                    media.Frequency.Update();
+                }
+            }  
         }
         //Metod för att fylla kategori-listboxen med kategorier från xml-filen
         private void PopulateCategoryListBox()
@@ -71,6 +97,7 @@ namespace PresentationLayer
         private void PopulatelstBoxAvsnitt()
         {
             lstBoxAvsnitt.Items.Clear();
+            txtBoxBeskrivning.Clear();
             Media media = mediaController.GetMediaById(lstViewFeed.FocusedItem.Index);
             
             {
@@ -88,9 +115,8 @@ namespace PresentationLayer
             Media media = mediaController.GetMediaById(lstViewFeed.SelectedIndices[0]);
             int i = lstBoxAvsnitt.SelectedIndex;
             {
-                txtBoxBeskrivning.AppendText(media.ListOfEpisodes()[i].Description);
+                txtBoxBeskrivning.AppendText(media.ListOfEpisodes()[i].Description + "\n\nPublicerad: " + media.ListOfEpisodes()[i].PubDate);
                 lblAvsinttsBeskrivning.Text = media.Name + ": " + media.ListOfEpisodes()[i].Title;
-                
             }
 
         }
@@ -294,6 +320,8 @@ namespace PresentationLayer
         //Kallar på metoden som populerar avsnittslistan när man klickar på ett spesifikt feed i ViewFeed-listan
         private void lstViewFeed_SelectedIndexChanged(object sender, EventArgs e)
         {
+            lblPodcastBeskrivning.Text = "Podcasts: Avsnitt";
+            lblAvsinttsBeskrivning.Text = "Avsnitt";
             PopulatelstBoxAvsnitt();
             Media media = mediaController.GetMediaById(lstViewFeed.FocusedItem.Index);
             txtBoxURL.Text = media.Url;
@@ -301,33 +329,34 @@ namespace PresentationLayer
         //Kallar på metoden som populerar beskrivningsrutan när man klickar på ett specifikt avsnitt i avsnitslistan
         private void lstBoxAvsnitt_SelectedIndexChanged(object sender, EventArgs e)
         {
+            lblPodcastBeskrivning.Text = "Podcasts: Avsnitt";
+            lblAvsinttsBeskrivning.Text = "Avsnitt";
             PopulatetxtBoxBeskrivning();
         }
 
         //Sorterar feedet efter vald kategori
         private async void lstBoxKategori_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
+            lstViewFeed.Items.Clear();
+            lstBoxAvsnitt.Items.Clear();
+            txtBoxBeskrivning.Clear();
+            lblPodcastBeskrivning.Text = "Podcasts: Avsnitt";
+            lblAvsinttsBeskrivning.Text = "Avsnitt";
+            List<Media> medialist = mediaController.RetrieveAllMedia();
+            foreach (var media in medialist.Where(media => media.Category.Name.Equals(lstBoxKategori.SelectedItem)))
             {
-                lstViewFeed.Items.Clear();
-                List<Media> medialist = mediaController.RetrieveAllMedia();
-                foreach (var media in medialist)
-                {
-                    if (media.Category.Name.Equals(lstBoxKategori.SelectedItem))
-                    {
-                        Task GetUrlData = media.GetUrlAsync(media.Url);
-                        await GetUrlData;
-                        string[] row1 = { media.Name, media.Frequency.GetType().ToString().Substring(8), media.Category.Name };
-                        lstViewFeed.Items.Add(media.NumberOfEpisodes.ToString()).SubItems.AddRange(row1);
-                    }
-                }
+                Task GetUrlData = media.GetUrlAsync(media.Url);
+                await GetUrlData;
+                string[] row1 = { media.Name, media.Frequency.GetType().ToString().Substring(8), media.Category.Name };
+                lstViewFeed.Items.Add(media.NumberOfEpisodes.ToString()).SubItems.AddRange(row1);
             }
-            catch (FileNotFoundException) { }
-            catch (DirectoryNotFoundException) { }
-            catch (Exception) { }
         }
         private void btnAllaKategorier_Click(object sender, EventArgs e)
         {
+            lstBoxAvsnitt.Items.Clear();
+            txtBoxBeskrivning.Clear();
+            lblPodcastBeskrivning.Text = "Podcasts: Avsnitt";
+            lblAvsinttsBeskrivning.Text = "Avsnitt";
             PopulateViewFeed();
         }
     }
